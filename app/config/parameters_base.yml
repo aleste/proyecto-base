@@ -1,0 +1,8 @@
+parameters:
+    app:
+        name: "Proyecto Base"
+        title: "Proyecto Base"
+        version: "v1.0"
+        icon: "icon-cogs"
+    constantes:
+        tipo: 1

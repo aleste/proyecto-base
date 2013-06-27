@@ -1,0 +1,47 @@
+{% extends 'FrontendBundle::layout.html.twig' %}
+
+{% block navbar %}
+  <div class="navbar navbar-fixed-top navbar-inverse">
+      <div class="navbar-inner">
+        <div class="container"><!-- Collapsable nav bar -->
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </a>
+
+            <a class="brand" href="#" title="Proyecto Base"><i class="{{ global.app.icon }}"></i> {{ global.app.title }}</a>
+
+            <div class="nav-collapse"><!-- Other nav bar content -->
+              <!-- The drop down menu -->
+              <ul class="nav pull-right">
+                <li class="divider-vertical"></li>
+                <li class="dropdown">
+                  <a class="dropdown-toggle" href="#" data-toggle="dropdown">Ingresar <strong class="caret"></strong></a>
+                  <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+                    <form action="{{ path('login_check') }}" method="post">
+
+                        <input id="username" type="text" name="_username" style="margin-bottom: 15px;" size="30" placeholder="Nombre de Usuario" value="" />
+                        <input id="password" type="password" name="_password" style="margin-bottom: 15px;" size="30" placeholder="Contraseña" />
+                    <input class="btn btn-primary" style="clear: left; width: 100%; height: 32px; font-size: 13px;" type="submit" name="commit" value="Ingresar" />
+                  </form>
+                  </div>
+                </li>
+              </ul>
+            </div>
+        </div>
+      </div>
+   </div>
+{% endblock %}
+
+{% block content %}
+    {% if error %}
+        <div class="alert">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <i class="icon-warning-sign"></i> {{ error.message }}
+        </div>
+    {% endif %}
+  <div class="well">
+      Bienvenido al {{ global.app.name }}
+  </div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    {% block navbar %}{% endblock %}
+
+    {% block container %}
+        <div class="container">
+            <div class="row-fluid">
+                <div class="span12">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+
+    {% block footer %}
+        <footer>
+            <div class="container">
+              <div class="row-fluid">
+                <div class="span12">
+                    <hr>
+                    <p class="text-center">{{ global.app.name }} - {{ global.app.version }}</p>
+                </div>
+              </div>
+            </div>
+        </footer>
+    {% endblock %}
+
+{% endblock %}
