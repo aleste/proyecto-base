@@ -1,47 +1,68 @@
 {% extends 'FrontendBundle::layout.html.twig' %}
-
-{% block navbar %}
-  <div class="navbar navbar-fixed-top navbar-inverse">
-      <div class="navbar-inner">
-        <div class="container"><!-- Collapsable nav bar -->
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </a>
-
-            <a class="brand" href="#" title="Proyecto Base"><i class="{{ global.app.icon }}"></i> {{ global.app.title }}</a>
-
-            <div class="nav-collapse"><!-- Other nav bar content -->
-              <!-- The drop down menu -->
-              <ul class="nav pull-right">
-                <li class="divider-vertical"></li>
-                <li class="dropdown">
-                  <a class="dropdown-toggle" href="#" data-toggle="dropdown">Ingresar <strong class="caret"></strong></a>
-                  <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
-                    <form action="{{ path('login_check') }}" method="post">
-
-                        <input id="username" type="text" name="_username" style="margin-bottom: 15px;" size="30" placeholder="Nombre de Usuario" value="" />
-                        <input id="password" type="password" name="_password" style="margin-bottom: 15px;" size="30" placeholder="Contraseña" />
-                    <input class="btn btn-primary" style="clear: left; width: 100%; height: 32px; font-size: 13px;" type="submit" name="commit" value="Ingresar" />
-                  </form>
-                  </div>
-                </li>
-              </ul>
-            </div>
-        </div>
-      </div>
-   </div>
-{% endblock %}
+{% import 'FrontendBundle:Macros:alerts.html.twig' as alerts %}
+{% import 'FrontendBundle:Macros:buttons.html.twig' as buttons %}
 
 {% block content %}
-    {% if error %}
-        <div class="alert">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <i class="icon-warning-sign"></i> {{ error.message }}
-        </div>
+
+  <div class="alert alert-info">
+    {% if app.user %}
+        {% set usuario = (app.user.firstName ~', '~ app.user.lastName) %}
+    {% else %}
+        {% set usuario = "" %}
     {% endif %}
-  <div class="well">
-      Bienvenido al {{ global.app.name }}
+      Bienvenido <strong>{{ usuario }}</strong> al {{ global.app.name }}
   </div>
+
+  <h1>¿Qué hay aquí? <small>...algunos ejemplos.</small></h1>
+  <hr>
+  <legend>Etiquetas</legend>
+  <span class="label label-success">Label success</span>
+  <span class="label label-warning">Label warning</span>
+  <span class="label label-info">Badges: </span>
+  <span class="badge badge-important">1</span>
+  <span class="badge badge-important">2</span>
+  <span class="badge badge-important">3</span>
+  <span class="badge badge-info">4</span>
+  <span class="badge badge-inverse">5</span>
+  <span class="badge badge-success">6</span>
+  <legend>Alertas (Con macros)</legend>
+  {{ alerts.success('La operación se ha efecutado correctamente!') }}
+  {{ alerts.info('Mensaje informativo.') }}
+  {{ alerts.error('Se ha producido algún error.') }}
+  {{ alerts.warning('Prestar atención.') }}
+  <legend>Botones (bootstrap)</legend>
+    <button class="btn btn-large btn-primary" type="button">Large button</button>
+    <button class="btn btn-default btn-success" type="button">Default medium</button>
+    <button class="btn btn-mini btn-warning" type="button">Mini</button>
+  <legend>Botones (Con macros)</legend>
+    {{ buttons.create(path('homepage')) }}
+    {{ buttons.edit(path('homepage')) }}
+    {{ buttons.save(path('homepage')) }}
+    {{ buttons.show(path('homepage')) }}
+    {{ buttons.delete(path('homepage'), 'Eliminar') }}
+
+  <legend>Iconos</legend>
+    <i class="icon-user icon-4x"></i>
+    <i class="icon-user icon-2x"></i>
+    <i class="icon-user"></i>
+    <i class="icon-spinner icon-spin"></i>
+  <legend>Otros Widgets</legend>
+  <form action="#" class="form-horizontal">
+    <label for="">Calendario</label>
+    <div class="input-prepend">
+      <span class="add-on"><i class="icon-calendar"></i></span>
+      <input type="text" class="span10" value="02-16-2012" id="dp1">
+    </div>
+  </form>
+  <form>
+    <div class="input-prepend">
+      <span class="add-on"><i class="icon-envelope"></i></span>
+      <input class="span10" type="text" placeholder="Email address">
+    </div>
+    <div class="input-prepend">
+      <span class="add-on"><i class="icon-key"></i></span>
+      <input class="span10" type="password" placeholder="Password">
+    </div>
+  </form>
+
 {% endblock %}

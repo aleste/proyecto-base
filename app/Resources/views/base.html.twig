@@ -3,9 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}{{ global.app.title }}{% endblock %}</title>
-        {% block stylesheets %}
-            {% include '::_stylesheets.html.twig' %}
-        {% endblock %}
+        {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>

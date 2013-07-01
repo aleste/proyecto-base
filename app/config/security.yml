@@ -1,50 +1,48 @@
 security:
-    encoders:
-        FOS\UserBundle\Model\UserInterface: sha512
-
-    role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_SONATA_ADMIN, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
-        SONATA:
-            - ROLE_SONATA_PAGE_ADMIN_PAGE_EDIT  # if you are not using acl then this line must be uncommented
-
     providers:
         fos_userbundle:
-            id: fos_user.user_manager
+            id: fos_user.user_provider.username_email
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
+    role_hierarchy:
+        ROLE_ADMIN:       [ROLE_USER, ROLE_SONATA_ADMIN]
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        SONATA:
+            - ROLE_SONATA_PAGE_ADMIN_PAGE_EDIT  # if you are using acl then this line must be commented
 
     firewalls:
-
-        # -> custom firewall for the admin area of the URL
+        # -> custom firewall for the admin area of the URL (SONATA)
         admin:
-            pattern:      /admin(.*)
+            switch_user:        true
+            context:            user
+            pattern:            /admin(.*)
             form_login:
                 provider:       fos_userbundle
                 login_path:     /admin/login
                 use_forward:    false
                 check_path:     /admin/login_check
                 failure_path:   null
+                use_referer:    true
             logout:
                 path:           /admin/logout
+                target:         /
+
             anonymous:    true
         # -> end custom configuration
 
         # defaut login area for standard users
         main:
-            pattern:      .*
+            switch_user:        true
+            context:            user
+            pattern:            .*
             form_login:
                 provider:       fos_userbundle
-                login_path:     /
+                login_path:     /login
                 use_forward:    false
                 check_path:     /login_check
-                failure_path:   null
-                always_use_default_target_path: false
-                default_target_path: /logueado
-                target_path_parameter:          _target_path
-                use_referer:                    false
-            logout:
-                path: /logout
-                target: /
-            anonymous:    true
+                failure_path:   /login
+            logout:             true
+            anonymous:          true
 
     access_control:
         # URL of FOSUserBundle which need to be available to anonymous users
