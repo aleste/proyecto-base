@@ -1,0 +1,46 @@
+{% extends 'FrontendBundle::layout.html.twig' %}
+{% import 'FrontendBundle:Macros:alerts.html.twig' as alerts %}
+
+{% block flashes %}
+    {% if error %}
+        {{ alerts.error(error|trans) }}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <h3>Ingreso <small>{{global.app.title}}</small></h3>
+    </div>
+
+<blockquote>
+  <p>Por favor indique su email y contraseña.</p>
+</blockquote>
+
+<form action="{{ path('fos_user_security_check') }}" method="post">
+<fieldset>
+    <div class="control-group">
+        <label for="username" class="control-label">Email</label>
+        <div class="controls">
+            <div class="input-prepend">
+                <span class="add-on"><i class="icon-envelope"></i></span>
+                <input type="text" id="username" name="_username" placeholder="Correo electrónico" value="{{ last_username }}" />
+            </div>
+
+        </div>
+    </div>
+    <div class="control-group">
+        <label for="password" class="control-label">Contraseña</label>
+        <div class="controls">
+            <div class="input-prepend">
+                <span class="add-on"><i class="icon-key"></i></span>
+                <input type="password" id="password" placeholder="Clave de acceso" name="_password" />
+            </div>
+        </div>
+    </div>
+</fieldset>
+<div class="form-actions">
+    <button type="submit" class="btn btn-primary" name="login"><i class="icon-lock"></i> Ingresar</button>
+</div>
+</form>
+
+{% endblock %}

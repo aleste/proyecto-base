@@ -1,0 +1,42 @@
+<div class="navbar navbar-fixed-top navbar-inverse">
+  <div class="navbar-inner">
+    <div class="container"><!-- Collapsable nav bar -->
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+
+        <a class="brand" href="#" title="Proyecto Base"><i class="{{ global.app.icon }}"></i> {{ global.app.title }}</a>
+
+        <div class="nav-collapse"><!-- Other nav bar content -->
+
+          <ul class="nav">
+              <li><a href="{{path('homepage')}}">Inicio</a></li>
+          </ul>
+
+          <ul class="nav pull-right">
+
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i> {{app.user.email}} <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                          <li><a href="{{path('fos_user_change_password')}}"><i class="icon-key"></i> Cambiar Contraseña</a></li>
+                          <li class="divider"></li>
+
+                          <li>
+                            <a href="{{ path('fos_user_security_logout') }}"><i class="icon-off"></i>
+                              {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+                          </li>
+                        </ul>
+                </li>
+            {% else %}
+                <li>
+                    <a href="{{path('fos_user_security_login')}}"><i class="icon-lock"></i> Ingresar</a>
+                </li>
+            {% endif %}
+          </ul>
+        </div>
+    </div>
+  </div>
+</div>

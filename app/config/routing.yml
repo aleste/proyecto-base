@@ -20,7 +20,7 @@ fos_user_resetting:
 
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
-    prefix: /change-password
+    prefix: /cuenta
 
 soanata_user:
     resource: '@SonataUserBundle/Resources/config/routing/admin_security.xml'
@@ -41,3 +41,4 @@ login_check:
 # error-prevention
 homepage:
  pattern: /
+

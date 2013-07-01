@@ -1,0 +1,39 @@
+{% macro show(url, message) %}
+<a href="{{ url }}" class="btn">
+   <i class="icon-eye-open"></i>
+    {{ message is empty ? 'base.show'|trans : message }}
+</a>
+{% endmacro %}
+
+{% macro create(url, message) %}
+<a href="{{ url }}" class="btn btn-primary">
+    <i class="icon-plus-sign"></i>
+    {{ message is empty ? 'base.create'|trans : message }}
+</a>
+{% endmacro %}
+
+{% macro edit(url, message) %}
+<a href="{{ url }}" class="btn">
+    <i class="icon-pencil"></i>
+    {{ message is empty ? 'base.edit'|trans : message }}
+</a>
+{% endmacro %}
+
+{% macro delete(url, message) %}
+<form action="{{ url }}" method="post" style="display: inline;">
+    <input type="hidden" name="_method" value="DELETE">
+    <button class="btn btn-danger">
+        <i class="icon-trash"></i>
+        {{ message is empty ? 'base.delete'|trans : message }}
+    </button>
+</form>
+{% endmacro %}
+
+{% macro save(url, message) %}
+<a href="{{ url }}" class="btn btn-success">
+    <i class="icon-save"></i>
+    {{ message is empty ? 'base.save'|trans : message }}
+</a>
+{% endmacro %}
+
+
