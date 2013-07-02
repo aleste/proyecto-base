@@ -1,3 +1,8 @@
+aleste_demo:
+    resource: "@AlesteDemoBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 frontend:
     resource: "@FrontendBundle/Controller/"
     type:     annotation
