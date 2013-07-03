@@ -3,6 +3,7 @@ base.edit: Editar
 base.show: Mostrar
 base.save: Guardar
 base.delete: Borrar
+base.back: Volver
 "Bad credentials": Nombre de usuario o Contraseña inválido
 change_password.flash.success: "La contraseña se cambio correctamente!"
 fos_user:

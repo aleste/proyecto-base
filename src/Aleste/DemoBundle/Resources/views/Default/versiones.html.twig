@@ -1,0 +1,16 @@
+{% extends 'FrontendBundle::layout.html.twig' %}
+{% import 'FrontendBundle:Macros:buttons.html.twig' as buttons %}
+{% block content %}
+<h1>Versiones del POST</h1>
+<table class="table">
+    <tr><td><strong>Versión</strong></td><td><strong>Título</strong></td></tr>
+    {% for version in versiones|sort %}
+    <tr>
+        <td>{{version.version}}</td>
+         <td>{{version.data.title}}</td>
+        </tr>
+    {% endfor %}
+</table>
+<hr>
+{{ buttons.back(path('demo')) }}
+{% endblock %}

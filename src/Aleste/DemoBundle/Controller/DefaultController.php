@@ -5,11 +5,18 @@ namespace Aleste\DemoBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Aleste\DemoBundle\Entity\Post;
 
+/**
+ * Default demo controller.
+ *
+ * @Route("/demo")
+ */
 class DefaultController extends Controller
 {
     /**
-     * @Route("/demo", name="demo")
+     * @Route("/", name="demo")
      * @Template()
      */
     public function indexAction()
@@ -82,4 +89,21 @@ class DefaultController extends Controller
         $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $content , $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
         $pdf->Output('demo_pdf.pdf', 'D');
     }
+
+
+    /**
+     * @Route("/version/{id}", name="versiones")
+     * @Template()
+     */
+
+    public function mostrarVersionesAction(Post $post){
+
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository('Gedmo\Loggable\Entity\LogEntry');
+        $versiones = $repo->getLogEntries($post);
+
+        return $this->render('AlesteDemoBundle:Default:versiones.html.twig',
+            array('post' => $post, 'versiones' => $versiones));
+    }
+
 }

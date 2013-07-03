@@ -36,4 +36,10 @@
 </a>
 {% endmacro %}
 
+{% macro back(url, message) %}
+<a href="{{ url }}" class="btn">
+    <i class="icon-caret-left"></i>
+    {{ message is empty ? 'base.back'|trans : message }}
+</a>
+{% endmacro %}
 
