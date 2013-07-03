@@ -1579,17 +1579,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "ea9adac34e6b663a33f70a763035a5d9363c275e"
+                "reference": "eba377e3cc7f5b58407cead5ec6982e62aea3cd1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/ea9adac34e6b663a33f70a763035a5d9363c275e",
-                "reference": "ea9adac34e6b663a33f70a763035a5d9363c275e",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/eba377e3cc7f5b58407cead5ec6982e62aea3cd1",
+                "reference": "eba377e3cc7f5b58407cead5ec6982e62aea3cd1",
                 "shasum": ""
             },
             "require": {
                 "doctrine/common": ">=2.2,<3.0",
-                "knplabs/knp-menu-bundle": ">=1.1,<2.0",
+                "knplabs/knp-menu-bundle": "~1.1",
                 "sonata-project/block-bundle": ">=2.2.1,<3.0",
                 "sonata-project/exporter": "1.*",
                 "sonata-project/jquery-bundle": "1.8.*",
@@ -1645,7 +1645,7 @@
                 "bootstrap",
                 "sonata"
             ],
-            "time": "2013-06-29 14:13:52"
+            "time": "2013-07-02 09:14:29"
         },
         {
             "name": "sonata-project/block-bundle",
@@ -2167,7 +2167,7 @@
             "require": {
                 "gedmo/doctrine-extensions": "2.3.*",
                 "php": ">=5.3.2",
-                "symfony/framework-bundle": ">=2.1,<3.0"
+                "symfony/framework-bundle": "~2.1"
             },
             "suggest": {
                 "doctrine/doctrine-bundle": "to use the ORM extensions",

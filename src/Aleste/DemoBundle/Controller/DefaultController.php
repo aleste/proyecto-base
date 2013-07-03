@@ -58,4 +58,40 @@ class DefaultController extends Controller
         $response->headers->set('Cache-Control', 'maxage=1');
         return $response;
     }
+
+    /**
+     * Genera y descarga un pdf
+     * @Route("/pdf", name="pdf")
+     */
+    public function exportPdf()
+    {
+
+        $contenedor = $this->container;
+        $pdf = $contenedor->get("white_october.tcpdf")->create('p');
+        $pdf->addPage();
+
+        $engine = $this->container->get('templating');
+        $content = $engine->render('AlesteDemoBundle:Default:exportpdf.html.twig');
+
+        $htmlOpen = <<<EOD
+<h1>Proyecto Base</h1>
+<i>Demo export a Pdf</i><hr />
+<table><tr><td width="180"><b>Titulo</b></td><td width="280"><b>Descripcion</b></td></tr>
+EOD;
+
+    $htmlClose = '</table>';
+    $htmlContent = '';
+    $pdf->SetFont('helvetica', '', 8);
+
+    $em = $this->getDoctrine()->getManager();
+    $posts = $this->getDoctrine()->getRepository('AlesteDemoBundle:Post')->findAll();
+    foreach ($posts as $data) {
+        $htmlContent .= '<tr><td>'.strtoupper($data->getTitle()).'</td><td>'.strtoupper($data->getDescription()).'</td></tr>';
+    }
+
+    $htmlExport = $htmlOpen.$htmlContent.$htmlClose;
+
+    $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $htmlExport , $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
+    $pdf->Output('demo_pdf.pdf', 'D');
+    }
 }

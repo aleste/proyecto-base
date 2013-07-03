@@ -32,6 +32,7 @@ class AppKernel extends Kernel
             new Liuggio\ExcelBundle\LiuggioExcelBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
+            new WhiteOctober\TCPDFBundle\WhiteOctoberTCPDFBundle(),
             new Aleste\DemoBundle\AlesteDemoBundle(),
         );
 
