@@ -71,27 +71,15 @@ class DefaultController extends Controller
         $pdf->addPage();
 
         $engine = $this->container->get('templating');
-        $content = $engine->render('AlesteDemoBundle:Default:exportpdf.html.twig');
 
-        $htmlOpen = <<<EOD
-<h1>Proyecto Base</h1>
-<i>Demo export a Pdf</i><hr />
-<table><tr><td width="180"><b>Titulo</b></td><td width="280"><b>Descripcion</b></td></tr>
-EOD;
+        $pdf->SetFont('helvetica', '', 8);
 
-    $htmlClose = '</table>';
-    $htmlContent = '';
-    $pdf->SetFont('helvetica', '', 8);
+        $em = $this->getDoctrine()->getManager();
+        $posts = $this->getDoctrine()->getRepository('AlesteDemoBundle:Post')->findAll();
+        $content = $engine->render('AlesteDemoBundle:Default:exportpdf.html.twig', array('posts' => $posts));
 
-    $em = $this->getDoctrine()->getManager();
-    $posts = $this->getDoctrine()->getRepository('AlesteDemoBundle:Post')->findAll();
-    foreach ($posts as $data) {
-        $htmlContent .= '<tr><td>'.strtoupper($data->getTitle()).'</td><td>'.strtoupper($data->getDescription()).'</td></tr>';
-    }
 
-    $htmlExport = $htmlOpen.$htmlContent.$htmlClose;
-
-    $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $htmlExport , $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
-    $pdf->Output('demo_pdf.pdf', 'D');
+        $pdf->writeHTMLCell($w=0, $h=0, $x='', $y='', $content , $border=0, $ln=1, $fill=0, $reseth=true, $align='', $autopadding=true);
+        $pdf->Output('demo_pdf.pdf', 'D');
     }
 }

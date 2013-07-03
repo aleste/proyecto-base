@@ -1,5 +1,7 @@
-<h1>Este es el TITULO DEL PDF</h1>
+
+<h1>Listado de Post - DEMO</h1>
 <table>
-    <tr><td>Titulo</td></tr>
-    <tr><td>PRUEBA</td></tr>
+    {% for post in posts %}
+        <tr><td>{{post.title}}</td><td>{{post.description}}</td></tr>
+    {% endfor %}
 </table>
