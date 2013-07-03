@@ -33,6 +33,7 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
             new Aleste\DemoBundle\AlesteDemoBundle(),
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
