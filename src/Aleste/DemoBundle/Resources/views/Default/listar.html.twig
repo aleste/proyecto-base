@@ -11,18 +11,10 @@
         </tr>
     {% endfor %}
 </table>
-<hr> 
+<hr>
 
-{{ simple_paginator_render('listar', null, { 
-	   'container_class' : '',
-	   'currentClass' : 'active',
-	   'firstEnabledClass':'btn',
-	   'previousEnabledClass':'btn',
-	   'nextEnabledClass':'btn',
-	   'lastEnabledClass':'btn',
-     })
+{{ simple_paginator_render('listar', null, {}, 'AlesteDemoBundle:Default:_paginator.html.twig')
   }}
 
 {{ buttons.back(path('demo')) }}
 {% endblock %}
- 
