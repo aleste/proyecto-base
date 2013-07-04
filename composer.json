@@ -32,6 +32,7 @@
         "doctrine/doctrine-fixtures-bundle": "dev-master",
         "doctrine/data-fixtures": "dev-master",
         "whiteoctober/tcpdf-bundle": "dev-master",
+        "beberlei/DoctrineExtensions": "dev-master",
         "ideup/simple-paginator-bundle": "dev-master"
     },
     "scripts": {
