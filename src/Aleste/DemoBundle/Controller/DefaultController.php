@@ -106,4 +106,25 @@ class DefaultController extends Controller
             array('post' => $post, 'versiones' => $versiones));
     }
 
+    /**
+     * @Route("/listar", name="listar")
+     * @Template()
+     */
+
+    public function listarAction() {
+
+        
+        $em = $this->getDoctrine()->getManager();
+        $paginator = $this->get('ideup.simple_paginator');
+
+        $posts = $paginator->paginate($em->getRepository('AlesteDemoBundle:Post')->queryGetPosts())->getResult();
+        //$posts = $em->getRepository('AlesteDemoBundle:Post')->GetPosts();
+
+        $vars = array(
+            'posts'  => $posts,
+
+        );
+        return  $vars;
+  }
+
 }

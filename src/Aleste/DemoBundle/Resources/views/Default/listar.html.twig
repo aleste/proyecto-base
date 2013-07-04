@@ -1,0 +1,28 @@
+{% extends 'FrontendBundle::layout.html.twig' %}
+{% import 'FrontendBundle:Macros:buttons.html.twig' as buttons %}
+{% block content %}
+<h1>Listado de POST</h1>
+<table class="table">
+    <tr><td><strong>Titulo</strong></td><td><strong>Descripcion</strong></td></tr>
+    {% for post in posts %}
+    <tr>
+        <td>{{post.title}}</td>
+         <td>{{post.description}}</td>
+        </tr>
+    {% endfor %}
+</table>
+<hr> 
+
+{{ simple_paginator_render('listar', null, { 
+	   'container_class' : '',
+	   'currentClass' : 'active',
+	   'firstEnabledClass':'btn',
+	   'previousEnabledClass':'btn',
+	   'nextEnabledClass':'btn',
+	   'lastEnabledClass':'btn',
+     })
+  }}
+
+{{ buttons.back(path('demo')) }}
+{% endblock %}
+ 

@@ -15,7 +15,7 @@ class LoadPostData implements FixtureInterface
     {
         
 
-        for ($i=1; $i < 11; $i++) { 
+        for ($i=1; $i < 101; $i++) { 
             $post = new Post();
             $post->setTitle('Post '.$i);
             $post->setDescription('Post de prueba '.$i);
