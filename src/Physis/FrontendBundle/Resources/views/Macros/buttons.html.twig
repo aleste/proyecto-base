@@ -1,3 +1,4 @@
+
 {% macro show(url, message) %}
 <a href="{{ url }}" class="btn">
    <i class="icon-eye-open"></i>
@@ -13,20 +14,50 @@
 {% endmacro %}
 
 {% macro edit(url, message) %}
-<a href="{{ url }}" class="btn">
+<a href="{{ url }}" class="btn btn-primary">
     <i class="icon-pencil"></i>
     {{ message is empty ? 'base.edit'|trans : message }}
 </a>
 {% endmacro %}
 
-{% macro delete(url, message) %}
+{% macro delete(url, delete_form, message) %}
 <form action="{{ url }}" method="post" style="display: inline;">
     <input type="hidden" name="_method" value="DELETE">
-    <button class="btn btn-danger">
+    {{ delete_form is empty ? '' : form_widget(delete_form) }}
+    <button class="btn btn-danger" type="submit">
         <i class="icon-trash"></i>
         {{ message is empty ? 'base.delete'|trans : message }}
     </button>
 </form>
+{% endmacro %}
+
+{% macro delete_confirm(url, delete_form, message) %}
+{% import _self as buttons %}
+
+<a href="#modal_delete_{{delete_form.vars.value.id}}" role="button" class="btn btn-danger" data-toggle="modal"><i class="icon-trash"></i> Eliminar</a>
+        
+<!-- Modal -->
+<div id="modal_delete_{{delete_form.vars.value.id}}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<h3 id="myModalLabel">Eliminar ítem</h3>
+</div>
+<div class="modal-body">
+<p>¿Está seguro que desea eliminar el ítem?</p>
+</div>
+<div class="modal-footer">
+
+<form action="{{ url }}" method="post" style="display: inline; margin: 0px">
+    <input type="hidden" name="_method" value="DELETE">
+    {{ delete_form is empty ? '' : form_widget(delete_form) }}
+    <button class="btn btn-success" type="submit">
+        <i class="icon-ok"></i>
+        Aceptar
+    </button>
+</form>
+<button class="btn" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> Cancelar</button>
+</div>
+</div>
 {% endmacro %}
 
 {% macro save(url, message) %}

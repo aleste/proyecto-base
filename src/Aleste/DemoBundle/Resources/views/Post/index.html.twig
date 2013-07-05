@@ -1,15 +1,21 @@
-{% extends '::base.html.twig' %}
+{% extends 'FrontendBundle::layout.html.twig' %}
+{% import 'FrontendBundle:Macros:alerts.html.twig' as alerts %}
+{% import 'FrontendBundle:Macros:buttons.html.twig' as buttons %}
 
-{% block body -%}
-    <h1>Post list</h1>
+{% block content %}
 
-    <table class="records_list">
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+    {{ alerts.success(flashMessage) }}
+    {% endfor %}
+    <h1>Listado de Posts</h1>
+    <p class="pull-right">{{ buttons.create(path('post_new')) }}</p>
+    <table class="table table-condensed table-bordered table-striped records_list">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Actions</th>
+                <th>Titulo</th>
+                <th>Descripcion</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -19,25 +25,14 @@
                 <td>{{ entity.title }}</td>
                 <td>{{ entity.description }}</td>
                 <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('post_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('post_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
+                    {{ buttons.show(path('post_show', { 'id': entity.id })) }}
+                    {{ buttons.edit(path('post_edit', { 'id': entity.id })) }}
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-        <ul>
-        <li>
-            <a href="{{ path('post_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
+    {{ simple_paginator_render('post', null, {}, 'AlesteDemoBundle:Default:_paginator.html.twig')
+  }}
+    {{ buttons.create(path('post_new')) }}
     {% endblock %}

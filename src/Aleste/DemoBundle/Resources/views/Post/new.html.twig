@@ -1,20 +1,18 @@
-{% extends '::base.html.twig' %}
+{% extends 'FrontendBundle::layout.html.twig' %}
+{% import 'FrontendBundle:Macros:alerts.html.twig' as alerts %}
+{% import 'FrontendBundle:Macros:buttons.html.twig' as buttons %}
 
-{% block body -%}
-    <h1>Post creation</h1>
+{% block content %}
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+    {{ alerts.success(flashMessage) }}
+    {% endfor %}
+    <h1>Nuevo Post</h1>
 
     <form action="{{ path('post_create') }}" method="post" {{ form_enctype(form) }}>
         {{ form_widget(form) }}
         <p>
-            <button type="submit">Create</button>
+            <button class="btn btn-success" type="submit"><i class="icon-save"></i> Guardar</button>
+            <a class="btn" href="{{ path('post') }}"><i class="icon-caret-left"></i> Listar</a>
         </p>
     </form>
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('post') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
 {% endblock %}

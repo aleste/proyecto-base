@@ -13,7 +13,15 @@
 
           <ul class="nav">
               <li><a href="{{path('homepage')}}">Inicio</a></li>
-              <li><a href="{{path('demo')}}">Demos</a></li>
+              <li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown">Demos</a>
+                <ul class="dropdown-menu">
+                  <li><a href="{{path('demo')}}">Componentes</a></li>
+                  <li class="divider"></li>
+                  <li>
+                    <a href="{{ path('post') }}">Gestion</a>
+                  </li>
+                </ul>
+              </li>
           </ul>
 
           <ul class="nav pull-right">

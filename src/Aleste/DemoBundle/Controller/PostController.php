@@ -28,8 +28,9 @@ class PostController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $paginator = $this->get('ideup.simple_paginator');
 
-        $entities = $em->getRepository('AlesteDemoBundle:Post')->findAll();
+        $entities = $paginator->paginate($em->getRepository('AlesteDemoBundle:Post')->queryGetPosts())->getResult();
 
         return array(
             'entities' => $entities,
@@ -53,6 +54,8 @@ class PostController extends Controller
             $em->persist($entity);
             $em->flush();
 
+            $this->get('session')->getFlashBag()->clear();
+            $this->get('session')->getFlashBag()->add('notice', 'Se creo el post correctamente!');
             return $this->redirect($this->generateUrl('post_show', array('id' => $entity->getId())));
         }
 
@@ -157,6 +160,8 @@ class PostController extends Controller
             $em->persist($entity);
             $em->flush();
 
+            //$this->get('session')->getFlashBag()->clear();
+            $this->get('session')->getFlashBag()->add('noticia', 'Se actualizaron los datos correctamente!');
             return $this->redirect($this->generateUrl('post_edit', array('id' => $id)));
         }
 
@@ -187,6 +192,8 @@ class PostController extends Controller
 
             $em->remove($entity);
             $em->flush();
+            $this->get('session')->getFlashBag()->clear();
+            $this->get('session')->getFlashBag()->add('notice', 'Se borro el post correctamente!');
         }
 
         return $this->redirect($this->generateUrl('post'));

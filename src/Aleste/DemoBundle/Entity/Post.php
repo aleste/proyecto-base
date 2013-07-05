@@ -4,6 +4,8 @@ namespace Aleste\DemoBundle\Entity;
 
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Aleste\DemoBundle\Validator\Constraints as AlesteAssert;
 
 /**
  * Post
@@ -28,6 +30,8 @@ class Post
      * @var string
      * @Gedmo\Versioned
      * @ORM\Column(name="title", type="string", length=255)
+     * @Assert\NotBlank
+     * @AlesteAssert\ContainsAlfanumerico
      */
     private $title;
 
