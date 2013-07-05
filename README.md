@@ -31,7 +31,8 @@ Ejecutar los siguientes comandos de consola:
     php app/console doctrine:schema:create
     php app/console doctrine:fixtures:load
     
-Crear usuario de administración
+Crear usuario de administración:
+
     php app/console fos:user:create admin
     php app/console fos:user:promote admin
 
