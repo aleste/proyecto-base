@@ -332,7 +332,7 @@ a.btn{
 /* Form */
 
 form{
-    margin: 10px;
+    margin: 0px;
 }
 
 form input, form button, form textarea, form select{
