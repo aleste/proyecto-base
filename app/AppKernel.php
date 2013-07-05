@@ -36,6 +36,7 @@ class AppKernel extends Kernel
             new Aleste\DemoBundle\AlesteDemoBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Ideup\SimplePaginatorBundle\IdeupSimplePaginatorBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

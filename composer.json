@@ -33,7 +33,8 @@
         "doctrine/data-fixtures": "dev-master",
         "whiteoctober/tcpdf-bundle": "dev-master",
         "beberlei/DoctrineExtensions": "dev-master",
-        "ideup/simple-paginator-bundle": "dev-master"
+        "ideup/simple-paginator-bundle": "dev-master",
+        "friendsofsymfony/jsrouting-bundle": "1.1.*@dev"
     },
     "scripts": {
         "post-install-cmd": [
