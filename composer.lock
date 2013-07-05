@@ -1705,33 +1705,33 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "456e79766d2daafecb1b1afaaed1fdb3518b4fc7"
+                "reference": "fc0b912b84f2a93793708136f9532566fc7fbe68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/456e79766d2daafecb1b1afaaed1fdb3518b4fc7",
-                "reference": "456e79766d2daafecb1b1afaaed1fdb3518b4fc7",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/fc0b912b84f2a93793708136f9532566fc7fbe68",
+                "reference": "fc0b912b84f2a93793708136f9532566fc7fbe68",
                 "shasum": ""
             },
             "require": {
-                "doctrine/common": ">=2.2,<3.0",
+                "doctrine/common": "~2.2",
                 "knplabs/knp-menu-bundle": "~1.1",
-                "sonata-project/block-bundle": ">=2.2.1,<3.0",
+                "sonata-project/block-bundle": "~2.2,>=2.2.1",
                 "sonata-project/exporter": "1.*",
                 "sonata-project/jquery-bundle": "1.8.*",
-                "symfony/config": ">=2.2,<2.4-dev",
-                "symfony/console": ">=2.2,<2.4-dev",
-                "symfony/form": ">=2.2,<2.4-dev",
-                "symfony/http-foundation": ">=2.2,<2.4-dev",
-                "symfony/routing": ">=2.2,<2.4-dev",
-                "symfony/security-bundle": ">=2.2,<2.4-dev",
-                "symfony/twig-bridge": ">=2.2,<2.4-dev",
-                "symfony/validator": ">=2.2,<2.4-dev",
-                "twig/twig": ">=1.12,<2.0-dev"
+                "symfony/config": "~2.2",
+                "symfony/console": "~2.2",
+                "symfony/form": "~2.2",
+                "symfony/http-foundation": "~2.2",
+                "symfony/routing": "~2.2",
+                "symfony/security-bundle": "~2.2",
+                "symfony/twig-bridge": "~2.2",
+                "symfony/validator": "~2.2",
+                "twig/twig": "~1.12"
             },
             "require-dev": {
                 "jms/translation-bundle": "*@dev",
-                "sonata-project/intl-bundle": "2.1.*"
+                "sonata-project/intl-bundle": "~2.1"
             },
             "suggest": {
                 "sonata-project/doctrine-orm-admin-bundle": "2.2.*@dev",
@@ -1771,7 +1771,7 @@
                 "bootstrap",
                 "sonata"
             ],
-            "time": "2013-07-04 14:35:32"
+            "time": "2013-07-05 16:02:34"
         },
         {
             "name": "sonata-project/block-bundle",
