@@ -162,6 +162,7 @@ class PostController extends Controller
 
             //$this->get('session')->getFlashBag()->clear();
             $this->get('session')->getFlashBag()->add('noticia', 'Se actualizaron los datos correctamente!');
+
             return $this->redirect($this->generateUrl('post_edit', array('id' => $id)));
         }
 
