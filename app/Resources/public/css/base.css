@@ -1708,3 +1708,7 @@ border:1px solid #eee;
   background-image: -o-linear-gradient(bottom, #ee5f5b, #bd362f);
   background-image: linear-gradient(bottom, #ee5f5b, #bd362f);
 }
+
+.form-item-error {
+    color: #b94a48;
+}

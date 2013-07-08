@@ -1,0 +1,13 @@
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+    {% include '::_stylesheets.html.twig' %}
+{% endblock %}
+{% block body %}
+
+<div class="alert alert-warning">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <h4 class="alert-heading"><i class="icon-warning-sign"></i> Pagina no encontrada</h4>
+    {{ text }}
+</div>
+
+{% endblock %}

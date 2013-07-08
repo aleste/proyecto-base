@@ -8,7 +8,7 @@ Instalación
 
 Clonar el proyecto:
 
-    git clone https://github.com/aleste/proyecto-base.git
+    git clone USUARIO@dionisio.desa.apronline.gov.ar:/var/gitrepos/proyecto-base.git
 
 Instalar dependencias:
 
@@ -30,11 +30,13 @@ Ejecutar los siguientes comandos de consola:
     php app/console doctrine:database:create
     php app/console doctrine:schema:create
     php app/console doctrine:fixtures:load
-    
+
 Crear usuario de administración:
 
-    php app/console fos:user:create admin
-    php app/console fos:user:promote admin
+Defina un usuario para la administración del sistema:
+
+    php app/console fos:user:create admin   (Defina un email y una contraseña para el usuario)
+    php app/console fos:user:promote admin  (Setee el valor ROLE_SUPER_ADMIN)
 
 Publicar assets:
 

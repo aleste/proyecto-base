@@ -1,18 +1,23 @@
 "Bad credentials": Nombre de usuario o Contraseña inválido
 
 base:
-    create: Nuevo
-    edit:   Editar
+    create: 
+        create: Nuevo
+        success: Se creo un nuevo ítem!
+    edit:
+        edit: Editar
+        success: El ítem se modifico exitosamente!
     show:   Mostrar
     save:   Guardar
-    delete: Borrar
+    delete:
+        delete: Borrar
+        modal:
+            title: Eliminar ítem
+            question: ¿Está seguro que desea eliminar el ítem?
+        success: El ítem se elimino exitosamente    
     back:   Volver
     accept: Aceptar
     cancel: Cancelar
-    modal:
-        delete:
-            title: Eliminar ítem
-            question: ¿Está seguro que desea eliminar el ítem?
 
 change_password.flash.success: "La contraseña se cambio correctamente!"
 

@@ -8,14 +8,14 @@
 {% macro create(url, text) %}
     <a href="{{ url }}" class="btn btn-primary">
         <i class="icon-plus-sign"></i>
-        {{ text is empty ? 'base.create'|trans : text }}
+        {{ text is empty ? 'base.create.create'|trans : text }}
     </a>
 {% endmacro %}
 
 {% macro edit(url, text) %}
     <a href="{{ url }}" class="btn btn-primary">
         <i class="icon-pencil"></i>
-        {{ text is empty ? 'base.edit'|trans : text }}
+        {{ text is empty ? 'base.edit.edit'|trans : text }}
     </a>
 {% endmacro %}
 
@@ -33,15 +33,15 @@
 {% macro delete(url, delete_form, text, title, question) %}
     {% import _self as buttons %}
     <a href="#modal_delete_{{delete_form.vars.value.id}}" role="button" class="btn btn-danger" data-toggle="modal">
-        <i class="icon-trash"></i> {{ text is empty ? 'base.delete'|trans : text }}</a>
+        <i class="icon-trash"></i> {{ text is empty ? 'base.delete.delete'|trans : text }}</a>
     <!-- Modal -->
     <div id="modal_delete_{{delete_form.vars.value.id}}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal_delete_{{delete_form.vars.value.id}}" aria-hidden="true">
     <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="modal_delete_{{delete_form.vars.value.id}}">{{ title is empty ? 'base.modal.delete.title'|trans : title }}</h3>
+    <h3 id="modal_delete_{{delete_form.vars.value.id}}">{{ title is empty ? 'base.delete.modal.title'|trans : title }}</h3>
     </div>
     <div class="modal-body">
-    <p>{{ question is empty ? 'base.modal.delete.question'|trans : question }}</p>
+    <p>{{ question is empty ? 'base.delete.modal.question'|trans : question }}</p>
     </div>
     <div class="modal-footer">
         {{ buttons.delete_confirm(url, delete_form, text) }}

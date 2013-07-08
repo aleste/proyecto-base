@@ -9,6 +9,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Aleste\DemoBundle\Entity\Post;
 use Aleste\DemoBundle\Form\PostType;
+use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use FOS\UserBundle\Model\UserInterface;
 
 /**
  * Post controller.
@@ -55,7 +58,7 @@ class PostController extends Controller
             $em->flush();
 
             $this->get('session')->getFlashBag()->clear();
-            $this->get('session')->getFlashBag()->add('notice', 'Se creo el post correctamente!');
+            $this->get('session')->getFlashBag()->add('success', 'base.create.success');
             return $this->redirect($this->generateUrl('post_show', array('id' => $entity->getId())));
         }
 
@@ -160,9 +163,9 @@ class PostController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            //$this->get('session')->getFlashBag()->clear();
-            $this->get('session')->getFlashBag()->add('noticia', 'Se actualizaron los datos correctamente!');
 
+            $this->get('session')->getFlashBag()->clear();
+            $this->get('session')->getFlashBag()->add('success', 'base.edit.success');
             return $this->redirect($this->generateUrl('post_edit', array('id' => $id)));
         }
 
@@ -194,7 +197,7 @@ class PostController extends Controller
             $em->remove($entity);
             $em->flush();
             $this->get('session')->getFlashBag()->clear();
-            $this->get('session')->getFlashBag()->add('notice', 'Se borro el post correctamente!');
+            $this->get('session')->getFlashBag()->add('success', 'base.delete.success');
         }
 
         return $this->redirect($this->generateUrl('post'));

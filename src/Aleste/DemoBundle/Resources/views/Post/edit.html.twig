@@ -3,10 +3,6 @@
 {% import 'FrontendBundle:Macros:buttons.html.twig' as buttons %}
 
 {% block content %}
-
-    {% for flashMessage in app.session.flashbag.get('noticia') %}
-        {{ flashMessage }}
-    {% endfor %}
     <h1>Editar Post</h1>
 
 
@@ -15,6 +11,7 @@
         {{ form_widget(edit_form) }}
         {{ buttons.save() }}
         {{ buttons.back(path('post')) }}
+
     </form>
-        {{ buttons.delete(path('post_delete', { 'id': entity.id }), delete_form) }}
+    {{ buttons.delete(path('post_delete', { 'id': entity.id }), delete_form) }}
 {% endblock %}
