@@ -30,6 +30,9 @@ twig:
         global:
             app: "%app%"
             constantes: "%constantes%"
+    form:
+        resources:
+            - ":Form:form_customs.html.twig"
 
 # Assetic Configuration
 assetic:
