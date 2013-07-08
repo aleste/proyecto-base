@@ -13,3 +13,21 @@
         {% endif %}
     {% endspaceless %}
 {% endblock form_errors %}
+
+{% block form_row %}
+{% spaceless %}
+    <tr>
+        <td>
+            {{ form_label(form) }}
+        </td>
+        <td>
+            <ul>
+            {% for error in errors %}
+                <li class="form-item-error">{{ error.message }}</li>
+            {% endfor %}
+            </ul>
+            {{ form_widget(form) }}
+        </td>
+    </tr>
+{% endspaceless %}
+{% endblock form_row %}
