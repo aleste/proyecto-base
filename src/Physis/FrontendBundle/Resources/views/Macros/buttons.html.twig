@@ -1,76 +1,63 @@
-
-{% macro show(url, message) %}
-<a href="{{ url }}" class="btn">
-   <i class="icon-eye-open"></i>
-    {{ message is empty ? 'base.show'|trans : message }}
-</a>
+{% macro show(url, text) %}
+    <a href="{{ url }}" class="btn">
+       <i class="icon-eye-open"></i>
+        {{ text is empty ? 'base.show'|trans : text }}
+    </a>
 {% endmacro %}
 
-{% macro create(url, message) %}
-<a href="{{ url }}" class="btn btn-primary">
-    <i class="icon-plus-sign"></i>
-    {{ message is empty ? 'base.create'|trans : message }}
-</a>
+{% macro create(url, text) %}
+    <a href="{{ url }}" class="btn btn-primary">
+        <i class="icon-plus-sign"></i>
+        {{ text is empty ? 'base.create.create'|trans : text }}
+    </a>
 {% endmacro %}
 
-{% macro edit(url, message) %}
-<a href="{{ url }}" class="btn btn-primary">
-    <i class="icon-pencil"></i>
-    {{ message is empty ? 'base.edit'|trans : message }}
-</a>
+{% macro edit(url, text) %}
+    <a href="{{ url }}" class="btn btn-primary">
+        <i class="icon-pencil"></i>
+        {{ text is empty ? 'base.edit.edit'|trans : text }}
+    </a>
 {% endmacro %}
 
-{% macro delete(url, delete_form, message) %}
-<form action="{{ url }}" method="post" style="display: inline;">
-    <input type="hidden" name="_method" value="DELETE">
-    {{ delete_form is empty ? '' : form_widget(delete_form) }}
-    <button class="btn btn-danger" type="submit">
-        <i class="icon-trash"></i>
-        {{ message is empty ? 'base.delete'|trans : message }}
-    </button>
-</form>
+{% macro delete_confirm(url, delete_form, text) %}
+    <form action="{{ url }}" method="post" style="display: inline;">
+        <input type="hidden" name="_method" value="DELETE">
+        {{ delete_form is empty ? '' : form_widget(delete_form) }}
+        <button class="btn btn-success" type="submit">
+            <i class="icon-ok"></i>
+            {{ text is empty ? 'base.accept'|trans : text }}
+        </button>
+    </form>
 {% endmacro %}
 
-{% macro delete_confirm(url, delete_form, message) %}
-{% import _self as buttons %}
-
-<a href="#modal_delete_{{delete_form.vars.value.id}}" role="button" class="btn btn-danger" data-toggle="modal"><i class="icon-trash"></i> Eliminar</a>
-        
-<!-- Modal -->
-<div id="modal_delete_{{delete_form.vars.value.id}}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-<h3 id="myModalLabel">Eliminar ítem</h3>
-</div>
-<div class="modal-body">
-<p>¿Está seguro que desea eliminar el ítem?</p>
-</div>
-<div class="modal-footer">
-
-<form action="{{ url }}" method="post" style="display: inline; margin: 0px">
-    <input type="hidden" name="_method" value="DELETE">
-    {{ delete_form is empty ? '' : form_widget(delete_form) }}
-    <button class="btn btn-success" type="submit">
-        <i class="icon-ok"></i>
-        Aceptar
-    </button>
-</form>
-<button class="btn" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> Cancelar</button>
-</div>
-</div>
+{% macro delete(url, delete_form, text, title, question) %}
+    {% import _self as buttons %}
+    <a href="#modal_delete_{{delete_form.vars.value.id}}" role="button" class="btn btn-danger" data-toggle="modal">
+        <i class="icon-trash"></i> {{ text is empty ? 'base.delete.delete'|trans : text }}</a>
+    <!-- Modal -->
+    <div id="modal_delete_{{delete_form.vars.value.id}}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal_delete_{{delete_form.vars.value.id}}" aria-hidden="true">
+    <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="modal_delete_{{delete_form.vars.value.id}}">{{ title is empty ? 'base.delete.modal.title'|trans : title }}</h3>
+    </div>
+    <div class="modal-body">
+    <p>{{ question is empty ? 'base.delete.modal.question'|trans : question }}</p>
+    </div>
+    <div class="modal-footer">
+        {{ buttons.delete_confirm(url, delete_form, text) }}
+        <button class="btn" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> {{ 'base.cancel'|trans }}</button>
+    </div>
+    </div>
 {% endmacro %}
 
-{% macro save(url, message) %}
-<a href="{{ url }}" class="btn btn-success">
-    <i class="icon-save"></i>
-    {{ message is empty ? 'base.save'|trans : message }}
-</a>
+{% macro save(text) %}
+    <button class="btn btn-default btn-success" type="submit"><i class="icon-save"></i> {{ text is empty ? 'base.save'|trans : text }}</button>
 {% endmacro %}
 
-{% macro back(url, message) %}
-<a href="{{ url }}" class="btn">
-    <i class="icon-caret-left"></i>
-    {{ message is empty ? 'base.back'|trans : message }}
-</a>
+{% macro back(url, text) %}
+    <a href="{{ url }}" class="btn">
+        <i class="icon-caret-left"></i>
+        {{ text is empty ? 'base.back'|trans : text }}
+    </a>
 {% endmacro %}
 

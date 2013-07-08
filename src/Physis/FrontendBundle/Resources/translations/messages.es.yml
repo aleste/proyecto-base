@@ -1,11 +1,26 @@
-base.create: Nuevo
-base.edit: Editar
-base.show: Mostrar
-base.save: Guardar
-base.delete: Borrar
-base.back: Volver
 "Bad credentials": Nombre de usuario o Contraseña inválido
+
+base:
+    create: 
+        create: Nuevo
+        success: Se creo un nuevo ítem!
+    edit:
+        edit: Editar
+        success: El ítem se modifico exitosamente!
+    show:   Mostrar
+    save:   Guardar
+    delete:
+        delete: Borrar
+        modal:
+            title: Eliminar ítem
+            question: ¿Está seguro que desea eliminar el ítem?
+        success: El ítem se elimino exitosamente    
+    back:   Volver
+    accept: Aceptar
+    cancel: Cancelar
+
 change_password.flash.success: "La contraseña se cambio correctamente!"
+
 fos_user:
     username:
         already_used: El nombre de usuario ya está en uso
