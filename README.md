@@ -30,6 +30,13 @@ Ejecutar los siguientes comandos de consola:
 
     php app/console doctrine:database:create
     php app/console doctrine:schema:create
+    php app/console doctrine:fixtures:load
+
+
+Defina un usuario para la administración del sistema:
+    
+    php app/console fos:user:create admin   (Defina un email y una contraseña para el usuario)
+    php app/console fos:user:promote admin  (Setee el valor ROLE_SUPER_ADMIN)
 
 
 Publicar assets:

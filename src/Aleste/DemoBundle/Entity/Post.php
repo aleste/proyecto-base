@@ -50,6 +50,15 @@ class Post
 
 
     /**
+     * @Assert\True(message = "El titulo no puede ser igual a la descripcion")
+     */
+    public function isTitleLegal()
+    {
+        return ($this->title != $this->description);
+    }
+
+
+    /**
      * Get id
      *
      * @return integer

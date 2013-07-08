@@ -3,9 +3,6 @@
 {% import 'FrontendBundle:Macros:buttons.html.twig' as buttons %}
 
 {% block content %}
-    {% for flashMessage in app.session.flashbag.get('notice') %}
-    {{ alerts.success(flashMessage) }}
-    {% endfor %}
     <h1>Nuevo Post</h1>
 
     <form action="{{ path('post_create') }}" method="post" {{ form_enctype(form) }}>
