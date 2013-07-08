@@ -9,6 +9,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Aleste\DemoBundle\Entity\Post;
 use Aleste\DemoBundle\Form\PostType;
+use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use FOS\UserBundle\Model\UserInterface;
 
 /**
  * Post controller.
