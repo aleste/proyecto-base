@@ -39,7 +39,7 @@ class Post
      * @var string
      *
      * @ORM\Column(name="description", type="text")
-     * @AlesteAssert\ContainsCuitValido
+     * @AlesteAssert\ContainsCuitValido(message = "%string% cuit.novalida")
      */
     private $description;
 
@@ -51,7 +51,7 @@ class Post
 
 
     /**
-     * @Assert\True(message = "El titulo no puede ser igual a la descripcion")
+     * @Assert\True(message = "El título no puede ser igual a la descripción")
      */
     public function isTitleLegal()
     {
