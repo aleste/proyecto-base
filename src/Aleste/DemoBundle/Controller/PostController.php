@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Aleste\DemoBundle\Entity\Post;
 use Aleste\DemoBundle\Form\PostType;
 use Symfony\Component\Security\Core\SecurityContext;
+use JMS\SecurityExtraBundle\Annotation\Secure;
 
 /**
  * Post controller.
@@ -24,6 +25,7 @@ class PostController extends Controller
      *
      * @Route("/", name="post")
      * @Method("GET")
+     * @Secure(roles="ROLE_ADMIN")
      * @Template()
      */
     public function indexAction()

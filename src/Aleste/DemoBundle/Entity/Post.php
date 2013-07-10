@@ -31,7 +31,7 @@ class Post
      * @Gedmo\Versioned
      * @ORM\Column(name="title", type="string", length=255)
      * @Assert\NotBlank
-     * @AlesteAssert\ContainsAlfanumerico
+     * @AlesteAssert\ContainsAlfanumerico(message="post.titulo.noalfanumerico")
      */
     private $title;
 
@@ -51,7 +51,7 @@ class Post
 
 
     /**
-     * @Assert\True(message = "El título no puede ser igual a la descripción")
+     * @Assert\True(message = "post.titulo.ilegal")
      */
     public function isTitleLegal()
     {
