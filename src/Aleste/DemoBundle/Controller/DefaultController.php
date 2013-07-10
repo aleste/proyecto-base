@@ -28,7 +28,7 @@ class DefaultController extends Controller
      * Genera y descarga un excel
      * @Route("/excel", name="excel")
      */
-    public function exportExcel()
+    public function exportExcelAction()
     {
         $contenedor =  $this->container;
 
@@ -70,7 +70,7 @@ class DefaultController extends Controller
      * Genera y descarga un pdf
      * @Route("/pdf", name="pdf")
      */
-    public function exportPdf()
+    public function exportPdfAction()
     {
 
         $contenedor = $this->container;

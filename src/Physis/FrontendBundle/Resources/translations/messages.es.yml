@@ -3,23 +3,23 @@
 base:
     create: 
         create: Nuevo
-        success: Se creo un nuevo ítem!
+        success: El ítem se ha creado correctamente!
     edit:
-        edit: Editar
-        success: El ítem se modifico exitosamente!
+        edit: Modificar
+        success: El ítem se ha modificado correctamente!
     show:   Mostrar
     save:   Guardar
     delete:
         delete: Borrar
         modal:
-            title: Eliminar ítem
-            question: ¿Está seguro que desea eliminar el ítem?
-        success: El ítem se elimino exitosamente    
+            title: Borrar ítem
+            question: ¿Está seguro que desea borrar el ítem?
+        success: El ítem se ha borrado correctamente!    
     back:   Volver
     accept: Aceptar
     cancel: Cancelar
 
-change_password.flash.success: "La contraseña se cambio correctamente!"
+change_password.flash.success: "La contraseña ha sido cambiada correctamente!"
 
 fos_user:
     username:
