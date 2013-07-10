@@ -39,6 +39,7 @@ class Post
      * @var string
      *
      * @ORM\Column(name="description", type="text")
+     * @AlesteAssert\ContainsCuitValido
      */
     private $description;
 
