@@ -246,6 +246,10 @@
                 <source>fos_user.password.mismatch</source>
                 <target>La contraseña ingresada no es válida</target>
             </trans-unit>
+            <trans-unit id="65">
+                <source>%string% cuit.novalida</source>
+                <target>La CUIT '%string%' no es válida.</target>
+            </trans-unit>            
         </body>
     </file>
 </xliff>
