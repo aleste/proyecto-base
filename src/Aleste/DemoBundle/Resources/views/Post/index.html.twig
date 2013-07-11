@@ -1,11 +1,12 @@
 {% extends 'FrontendBundle::layout.html.twig' %}
 {% import 'FrontendBundle:Macros:alerts.html.twig' as alerts %}
 {% import 'FrontendBundle:Macros:buttons.html.twig' as buttons %}
+{% import 'FrontendBundle:Macros:misc.html.twig' as filters %}
 
 {% block content %}
     <h1>Listado de Posts</h1>
     {% block filters %}        
-        {{ buttons.filter(path('post'), formFilter) }}
+        {{ filters.filter(path('post'), formFilter) }}
     {% endblock %}
     <p class="pull-right">{{ buttons.create(path('post_new')) }}</p>
     <table class="table table-condensed table-bordered table-striped records_list">

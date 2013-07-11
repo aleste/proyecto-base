@@ -18,7 +18,11 @@ base:
     back:   Volver
     accept: Aceptar
     cancel: Cancelar
-    filter: Filtrar
+    filter:
+        title: Filtros
+        submit: Filtrar
+        reset: Limpiar
+
 
 change_password.flash.success: "La contraseña ha sido cambiada correctamente!"
 

@@ -1,0 +1,17 @@
+{% macro filter(url, form, text) %}
+    <legend><small>{{ 'base.filter.title'|trans }}</small></legend>
+    <div class="well well-small">
+        <form action="{{ url }}" class="form-horizontal" method="get">    
+            {{ form_rest(form) }}        
+            <div class="pull-right">
+                <button class="btn btn-primary" type="submit" value="filter">
+                    <i class="icon-filter"></i>
+                    {{ text is empty ? 'base.filter.submit'|trans : text }}
+                </button>
+                <button type="reset" class="btn">
+                    <i class="icon-remove"></i>
+                    {{ 'base.filter.reset'|trans }}</button>
+            </div>
+        {{ form_end(form) }}
+    </div>
+{% endmacro %}
