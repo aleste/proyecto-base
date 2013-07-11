@@ -33,7 +33,7 @@
         {% else %}
             {% set rParams =  {'page': page} | merge(routeParams) %}
             <li>
-                <a href="{{ path('post', rParams) }}" class="btn">{{ page }}</a>
+                <a href="{{ path(route, rParams) }}" class="btn">{{ page }}</a>
             </li>
         {% endif %}
     {% endfor %}
