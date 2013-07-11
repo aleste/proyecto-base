@@ -24,18 +24,18 @@ class PostController extends Controller
     /**
      * Lists all Post entities.
      *
-     * @Route("/", name="post")
+     * @Route("/{page}", defaults={"page" = 1}, name="post")
      * @Method({"GET", "POST"})
      * @Secure(roles="ROLE_ADMIN")
      * @Template()
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request, $page)
     {
         $em = $this->getDoctrine()->getManager();
         $paginator = $this->get('ideup.simple_paginator');
         $formFilter = $this->get('form.factory')->create(new PostFilterType());
 
-        if($request->getMethod() == 'POST'){            
+        //if($request->getMethod() == 'POST'){            
             $formFilter->bind($request);
             // initliaze a query builder
             $filterBuilder = $this->get('doctrine.orm.entity_manager')
@@ -49,14 +49,19 @@ class PostController extends Controller
 
             $entities = $paginator->paginate($queryFilter)->getResult();    
 
-        }else{
-            $entities = $paginator->paginate($em->getRepository('AlesteDemoBundle:Post')->queryGetPosts())->getResult();    
+        //}else{
+           // $entities = $paginator->paginate($em->getRepository('AlesteDemoBundle:Post')->queryGetPosts())->getResult();    
+        //}
+        $filtrosActivos = array(); 
+           
+        foreach ($request->query->all() as $key => $value) {
+                $filtrosActivos = array($key => $value );            
         }
-
         
 
         return array(
             'formFilter' => $formFilter->createView(),
+            'filtrosActivos' => $request->query->all(),
             'entities' => $entities
         );
     }
@@ -111,7 +116,7 @@ class PostController extends Controller
     /**
      * Finds and displays a Post entity.
      *
-     * @Route("/{id}", name="post_show")
+     * @Route("/{id}/mostrar", name="post_show")
      * @Method("GET")
      * @Template()
      */
