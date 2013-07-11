@@ -4,6 +4,9 @@
 
 {% block content %}
     <h1>Listado de Posts</h1>
+    {% block filters %}        
+        {{ buttons.filter(path('post'), formFilter) }}
+    {% endblock %}
     <p class="pull-right">{{ buttons.create(path('post_new')) }}</p>
     <table class="table table-condensed table-bordered table-striped records_list">
         <thead>

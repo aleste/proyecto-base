@@ -33,6 +33,7 @@ twig:
     form:
         resources:
             - ":Form:form_customs.html.twig"
+            - LexikFormFilterBundle:Form:form_div_layout.html.twig
 
 # Assetic Configuration
 assetic:

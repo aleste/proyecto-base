@@ -18,6 +18,7 @@ base:
     back:   Volver
     accept: Aceptar
     cancel: Cancelar
+    filter: Filtrar
 
 change_password.flash.success: "La contraseña ha sido cambiada correctamente!"
 

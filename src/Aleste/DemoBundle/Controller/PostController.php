@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Aleste\DemoBundle\Entity\Post;
 use Aleste\DemoBundle\Form\PostType;
+use Aleste\DemoBundle\Form\PostFilterType;
 use Symfony\Component\Security\Core\SecurityContext;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 
@@ -24,21 +25,42 @@ class PostController extends Controller
      * Lists all Post entities.
      *
      * @Route("/", name="post")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      * @Secure(roles="ROLE_ADMIN")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $paginator = $this->get('ideup.simple_paginator');
+        $formFilter = $this->get('form.factory')->create(new PostFilterType());
 
-        $entities = $paginator->paginate($em->getRepository('AlesteDemoBundle:Post')->queryGetPosts())->getResult();
+        if($request->getMethod() == 'POST'){            
+            $formFilter->bind($request);
+            // initliaze a query builder
+            $filterBuilder = $this->get('doctrine.orm.entity_manager')
+                ->getRepository('AlesteDemoBundle:Post')
+                ->createQueryBuilder('e');
+
+            // build the query from the given form object
+            $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($formFilter, $filterBuilder);
+        
+            $queryFilter = $em->createQuery($filterBuilder->getDql());            
+
+            $entities = $paginator->paginate($queryFilter)->getResult();    
+
+        }else{
+            $entities = $paginator->paginate($em->getRepository('AlesteDemoBundle:Post')->queryGetPosts())->getResult();    
+        }
+
+        
 
         return array(
-            'entities' => $entities,
+            'formFilter' => $formFilter->createView(),
+            'entities' => $entities
         );
     }
+    
     /**
      * Creates a new Post entity.
      *
@@ -217,4 +239,40 @@ class PostController extends Controller
             ->getForm()
         ;
     }
+
+    /**
+     * Lists all Post entities with filters
+     *
+     * @Route("/filter/", name="post_filter")
+     * @Method("GET")     
+     * @Template()
+     */    
+
+    public function testFilterAction(Request $request)
+    {
+        $form = $this->get('form.factory')->create(new PostFilterType());
+
+        if ($this->get('request')->query->has('submit-filter')) {
+            // bind values from the request
+            
+            $form->bind($request);
+
+            // initliaze a query builder
+            $filterBuilder = $this->get('doctrine.orm.entity_manager')
+                ->getRepository('AlesteDemoBundle:Post')
+                ->createQueryBuilder('e');
+
+            // build the query from the given form object
+            $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($form, $filterBuilder);
+
+            // now look at the DQL =)
+            var_dump($filterBuilder->getDql());
+        }
+
+        return array(            
+            'form'   => $form->createView(),
+        );
+
+    }
+
 }

@@ -61,3 +61,20 @@
     </a>
 {% endmacro %}
 
+{% macro filter(url, form, text) %}
+<legend><small>Filtros</small></legend>
+<div class="well">
+
+    <form action="{{ url }}" class="form-horizontal" method="post">    
+        {{ form_rest(form) }}        
+        <div class="pull-right">
+            <button class="btn" type="submit" value="filter">
+                <i class="icon-filter"></i>
+                {{ text is empty ? 'base.filter'|trans : text }}
+            </button>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endmacro %}
+
+
