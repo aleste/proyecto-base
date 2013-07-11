@@ -8,9 +8,10 @@
                     <i class="icon-filter"></i>
                     {{ text is empty ? 'base.filter.submit'|trans : text }}
                 </button>
-                <button type="reset" class="btn">
+                <a href="{{ url }}" class="btn">
                     <i class="icon-remove"></i>
-                    {{ 'base.filter.reset'|trans }}</button>
+                    {{ 'base.filter.reset'|trans }}
+                </a>                
             </div>
         {{ form_end(form) }}
     </div>
