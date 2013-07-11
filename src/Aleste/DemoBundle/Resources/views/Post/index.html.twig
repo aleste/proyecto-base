@@ -31,7 +31,10 @@
         {% endfor %}
         </tbody>
     </table>
-    {{ simple_paginator_render('post', null, {}, 'AlesteDemoBundle:Default:_paginator.html.twig')
+    {{ simple_paginator_render('post', null, {
+        'routeParams' : filtrosActivos
+    
+}, 'AlesteDemoBundle:Default:_paginator.html.twig')
   }}
     {{ buttons.create(path('post_new')) }}
     {% endblock %}

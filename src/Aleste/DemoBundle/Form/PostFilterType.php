@@ -36,7 +36,7 @@ class PostFilterType extends AbstractType
 
     public function getName()
     {
-        return 'post_filter_form';
+        return 'criteria';
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
