@@ -23,17 +23,20 @@
     <form action="{{ url }}" method="post" style="display: inline;">
         <input type="hidden" name="_method" value="DELETE">
         {{ delete_form is empty ? '' : form_widget(delete_form) }}
-        <button class="btn btn-success" type="submit">
+        <button type="submit" class="btn btn-success" >
             <i class="icon-ok"></i>
             {{ text is empty ? 'base.accept'|trans : text }}
         </button>
     </form>
 {% endmacro %}
 
-{% macro delete(url, delete_form, text, title, question) %}
-    {% import _self as buttons %}
+{% macro delete(delete_form, text) %}
     <a href="#modal_delete_{{delete_form.vars.value.id}}" role="button" class="btn btn-danger" data-toggle="modal">
         <i class="icon-trash"></i> {{ text is empty ? 'base.delete.delete'|trans : text }}</a>
+{% endmacro %}
+
+{% macro delete_modal(url, delete_form, text, title, question) %}
+    {% import _self as buttons %}
     <!-- Modal -->
     <div id="modal_delete_{{delete_form.vars.value.id}}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal_delete_{{delete_form.vars.value.id}}" aria-hidden="true">
     <div class="modal-header">
@@ -45,7 +48,7 @@
     </div>
     <div class="modal-footer">
         {{ buttons.delete_confirm(url, delete_form, text) }}
-        <button class="btn" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> {{ 'base.cancel'|trans }}</button>
+        <button class="btn" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> {{ 'base.cancel'|trans }}</button>        
     </div>
     </div>
 {% endmacro %}
@@ -60,4 +63,5 @@
         {{ text is empty ? 'base.back'|trans : text }}
     </a>
 {% endmacro %}
+
 

@@ -2,7 +2,7 @@ parameters:
     app:
         name: "Proyecto Base"
         title: "Proyecto Base"
-        version: "v1.0"
+        version: "v1.1"
         icon: "icon-cogs"
     constantes:
         tipo: 1

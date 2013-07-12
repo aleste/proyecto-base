@@ -18,7 +18,12 @@
                   <li><a href="{{path('demo')}}">Componentes</a></li>
                   <li class="divider"></li>
                   <li>
-                    <a href="{{ path('post') }}">Gestión</a>
+                  {% if is_granted("ROLE_ADMIN") %}
+                    <a href="{{ path('post') }}"><i class="icon-unlock"></i> Gestión</a>
+                  {% else %}
+                    <a href="{{ path('post') }}"><i class="icon-lock"></i> Gestión</a>
+                  {% endif %}                  
+                    
                   </li>
                 </ul>
               </li>

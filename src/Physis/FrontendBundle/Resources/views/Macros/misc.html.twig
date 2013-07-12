@@ -1,0 +1,27 @@
+{% macro button(text) %}
+    <a href="#" class="btn btn-filters">
+       <i class="icon-circle-arrow-down"></i>
+        {{ 'base.filter.title'|trans }}
+    </a>        
+{% endmacro %}
+
+{% macro filter(url, form, text, active) %}    
+
+    <div id="filters-container" class="row-fluid {{active}}" >
+    <div class="span12 well well-small">
+        <form action="{{ url }}" class="form-horizontal" method="get">    
+            {{ form_rest(form) }}        
+            <div class="form-actions">
+                <button class="btn btn-primary" type="submit" value="filter">
+                    <i class="icon-filter"></i>
+                    {{ text is empty ? 'base.filter.submit'|trans : text }}
+                </button>
+                <a href="{{ url }}" class="btn">
+                    <i class="icon-remove"></i>
+                    {{ 'base.filter.reset'|trans }}
+                </a>                
+            </div>
+        {{ form_end(form) }}
+        </div>
+    </div>
+{% endmacro %}

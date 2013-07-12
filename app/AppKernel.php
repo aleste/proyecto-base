@@ -37,6 +37,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Ideup\SimplePaginatorBundle\IdeupSimplePaginatorBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new Lexik\Bundle\FormFilterBundle\LexikFormFilterBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

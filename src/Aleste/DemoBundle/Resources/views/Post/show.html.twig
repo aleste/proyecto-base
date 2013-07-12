@@ -21,7 +21,8 @@
             </tr>
         </tbody>
     </table>
-    {{ buttons.delete(path('post_delete', { 'id': entity.id }), delete_form) }}
+    {{ buttons.delete(delete_form) }}
+    {{ buttons.delete_modal(path('post_delete', { 'id': entity.id }), delete_form) }}
     {{ buttons.back(path('post')) }}
     {{ buttons.edit(path('post_edit', { 'id': entity.id })) }}
 {% endblock %}
