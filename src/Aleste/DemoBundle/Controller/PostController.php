@@ -31,38 +31,22 @@ class PostController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        $paginator = $this->get('ideup.simple_paginator');
-        $formFilter = $this->get('form.factory')->create(new PostFilterType());
+        $em             = $this->getDoctrine()->getManager();
+        $paginator      = $this->get('ideup.simple_paginator');
+        $formFilter     = $this->get('form.factory')->create(new PostFilterType());
 
-        //if($request->getMethod() == 'POST'){            
-            $formFilter->bind($request);
-            // initliaze a query builder
-            $filterBuilder = $this->get('doctrine.orm.entity_manager')
-                ->getRepository('AlesteDemoBundle:Post')
-                ->createQueryBuilder('e');
-
-            // build the query from the given form object
-            $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($formFilter, $filterBuilder);
-        
-            $queryFilter = $em->createQuery($filterBuilder->getDql());            
-
-            $entities = $paginator->paginate($queryFilter)->getResult();    
-
-        //}else{
-           // $entities = $paginator->paginate($em->getRepository('AlesteDemoBundle:Post')->queryGetPosts())->getResult();    
-        //}
-        $filtrosActivos = array(); 
-           
-        foreach ($request->query->all() as $key => $value) {
-                $filtrosActivos = array($key => $value );            
-        }
-        
+        $formFilter->bind($request);
+        // initliaze a query builder        
+        $filterBuilder  = $em->getRepository('AlesteDemoBundle:Post')->createQueryBuilder('p');
+        // build the query from the given form object
+        $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($formFilter, $filterBuilder);    
+        $queryFilter    = $em->createQuery($filterBuilder->getDql());
+        $entities       = $paginator->paginate($queryFilter)->getResult();
 
         return array(
-            'formFilter' => $formFilter->createView(),
-            'filtrosActivos' => $request->query->all(),
-            'entities' => $entities
+            'formFilter'        => $formFilter->createView(),
+            'filtrosActivos'    => $request->query->all(),
+            'entities'          => $entities
         );
     }
     
