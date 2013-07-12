@@ -17,8 +17,15 @@
                 {{ buttons.create(path('post_new')) }} 
             </p>
         </div>
-    </div>    
-    {{ filters.filter(path('post'), formFilter) }}            
+    </div>
+    
+    {% if filtrosActivos|length > 0 %}
+        {% set active = '' %}
+    {% else %}
+        {% set active = 'inactive' %}    
+    {% endif %} 
+
+    {{ filters.filter(path('post'), formFilter, '', active) }}            
     <table class="table table-condensed table-bordered table-striped records_list">
         <thead>
             <tr>

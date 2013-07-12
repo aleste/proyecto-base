@@ -43,9 +43,16 @@ class PostController extends Controller
         $queryFilter    = $em->createQuery($filterBuilder->getDql());
         $entities       = $paginator->paginate($queryFilter)->getResult();
 
+        $filtrosActivos =array();
+        foreach ($request->query->all() as $key => $value) {
+            if($key != "page"){
+                $filtrosActivos = array( $key => $value );
+            }
+        }
+
         return array(
             'formFilter'        => $formFilter->createView(),
-            'filtrosActivos'    => $request->query->all(),
+            'filtrosActivos'    => $filtrosActivos,
             'entities'          => $entities
         );
     }

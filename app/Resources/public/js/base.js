@@ -4,31 +4,11 @@ $(document).ready(function(){
         language: 'es'
     });
 
+    // Muestra/oculta filtros
     $(".btn-filters").on('click', function(e){
-        /*
-        var formFilterInputs = $("#filters-container form > :input");
-        var filterActive = false;
-        formFilterInputs.each(function(index, element){
-            if(element.value != ''){
-                filterActive = true;
-                return false;
-            }
-        });
-        if(!filterActive){
-            $('#filters-container').toggle('100');
-            $("i",this).toggleClass(" icon-circle-arrow-down icon-circle-arrow-up");
-        } */       
         $('#filters-container').toggle('100');
         $("i",this).toggleClass(" icon-circle-arrow-down icon-circle-arrow-up");
-            
-    });        
-
-
-    $("#delete_confirm").on('click', function(e){
-        var self = $this;
-        e.preventDefault();
-        self.closest("form").submit();
-    });        
+    });          
 
     $('#btn-carga-ajax').on('click', function(){
         var loading = $('#loading');

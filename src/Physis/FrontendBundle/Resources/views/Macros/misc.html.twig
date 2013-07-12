@@ -5,9 +5,9 @@
     </a>        
 {% endmacro %}
 
-{% macro filter(url, form, text) %}    
+{% macro filter(url, form, text, active) %}    
 
-    <div id="filters-container" class="row-fluid" style="display:none;" >
+    <div id="filters-container" class="row-fluid {{active}}" >
     <div class="span12 well well-small">
         <form action="{{ url }}" class="form-horizontal" method="get">    
             {{ form_rest(form) }}        
