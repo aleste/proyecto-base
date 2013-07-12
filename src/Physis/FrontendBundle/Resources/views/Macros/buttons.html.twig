@@ -30,10 +30,13 @@
     </form>
 {% endmacro %}
 
-{% macro delete(url, delete_form, text, title, question) %}
-    {% import _self as buttons %}
+{% macro delete(delete_form, text) %}
     <a href="#modal_delete_{{delete_form.vars.value.id}}" role="button" class="btn btn-danger" data-toggle="modal">
         <i class="icon-trash"></i> {{ text is empty ? 'base.delete.delete'|trans : text }}</a>
+{% endmacro %}
+
+{% macro delete_modal(url, delete_form, text, title, question) %}
+    {% import _self as buttons %}
     <!-- Modal -->
     <div id="modal_delete_{{delete_form.vars.value.id}}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal_delete_{{delete_form.vars.value.id}}" aria-hidden="true">
     <div class="modal-header">
