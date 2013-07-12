@@ -13,6 +13,9 @@ class PostFilterType extends AbstractType
 {    
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        
+        $builder->add('id', 'filter_number');
+
         $builder->add('title', 'filter_text', array(
             'apply_filter' => function (QueryBuilder $filterBuilder, Expr $expr, $field, array $values) {
 

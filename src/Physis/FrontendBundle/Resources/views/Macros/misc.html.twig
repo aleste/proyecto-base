@@ -1,9 +1,17 @@
-{% macro filter(url, form, text) %}
-    <legend><small>{{ 'base.filter.title'|trans }}</small></legend>
-    <div class="well well-small">
+{% macro button(text) %}
+    <a href="#" class="btn btn-filters">
+       <i class="icon-circle-arrow-down"></i>
+        {{ 'base.filter.title'|trans }}
+    </a>        
+{% endmacro %}
+
+{% macro filter(url, form, text) %}    
+
+    <div id="filters-container" class="row-fluid" style="display:none;" >
+    <div class="span12 well well-small">
         <form action="{{ url }}" class="form-horizontal" method="get">    
             {{ form_rest(form) }}        
-            <div class="pull-right">
+            <div class="form-actions">
                 <button class="btn btn-primary" type="submit" value="filter">
                     <i class="icon-filter"></i>
                     {{ text is empty ? 'base.filter.submit'|trans : text }}
@@ -14,5 +22,6 @@
                 </a>                
             </div>
         {{ form_end(form) }}
+        </div>
     </div>
 {% endmacro %}

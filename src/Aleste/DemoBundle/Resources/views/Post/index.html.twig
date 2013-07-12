@@ -5,10 +5,20 @@
 
 {% block content %}
     <h1>Listado de Posts</h1>
-    {% block filters %}        
-        {{ filters.filter(path('post'), formFilter) }}
-    {% endblock %}
-    <p class="pull-right">{{ buttons.create(path('post_new')) }}</p>
+
+    <div class="row-fluid">
+    <div class="span6">
+            <p class="">
+                {{ filters.button() }}
+            </p>
+        </div>
+        <div class="span6 pull-right">
+            <p class="pull-right">
+                {{ buttons.create(path('post_new')) }} 
+            </p>
+        </div>
+    </div>    
+    {{ filters.filter(path('post'), formFilter) }}            
     <table class="table table-condensed table-bordered table-striped records_list">
         <thead>
             <tr>

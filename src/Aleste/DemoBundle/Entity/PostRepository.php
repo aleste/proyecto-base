@@ -12,6 +12,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class PostRepository extends EntityRepository
 {
+
 	public function queryGetPosts(){
 
 		$em = $this->getEntityManager();
@@ -26,4 +27,5 @@ class PostRepository extends EntityRepository
 	public function getPosts(){
 		return $this->queryGetPosts()->getResult();
 	}
+	
 }
