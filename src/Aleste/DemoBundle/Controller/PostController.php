@@ -24,12 +24,12 @@ class PostController extends Controller
     /**
      * Lists all Post entities.
      *
-     * @Route("/{page}", defaults={"page" = 1}, name="post")
+     * @Route("/", name="post")
      * @Method({"GET", "POST"})
      * @Secure(roles="ROLE_ADMIN")
      * @Template()
      */
-    public function indexAction(Request $request, $page)
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $paginator = $this->get('ideup.simple_paginator');
