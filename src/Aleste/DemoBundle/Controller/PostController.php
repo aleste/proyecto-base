@@ -236,39 +236,4 @@ class PostController extends Controller
         ;
     }
 
-    /**
-     * Lists all Post entities with filters
-     *
-     * @Route("/filter/", name="post_filter")
-     * @Method("GET")     
-     * @Template()
-     */    
-
-    public function testFilterAction(Request $request)
-    {
-        $form = $this->get('form.factory')->create(new PostFilterType());
-
-        if ($this->get('request')->query->has('submit-filter')) {
-            // bind values from the request
-            
-            $form->bind($request);
-
-            // initliaze a query builder
-            $filterBuilder = $this->get('doctrine.orm.entity_manager')
-                ->getRepository('AlesteDemoBundle:Post')
-                ->createQueryBuilder('e');
-
-            // build the query from the given form object
-            $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($form, $filterBuilder);
-
-            // now look at the DQL =)
-            var_dump($filterBuilder->getDql());
-        }
-
-        return array(            
-            'form'   => $form->createView(),
-        );
-
-    }
-
 }
