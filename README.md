@@ -13,7 +13,7 @@ Clonar el proyecto:
 
 Instalar Dependencias:
 
-    php composer.php install
+    php composer.phar install
 
 
 Configurar Permisos:
