@@ -30,6 +30,8 @@
   {{ alerts.info('Mensaje informativo.') }}
   {{ alerts.error('Se ha producido algún error.') }}
   {{ alerts.warning('Prestar atención.') }}
+  <legend>Alertas autohide</legend>
+  {{ alerts.success('La operación se ha efecutado correctamente!', 'autohide') }}  
   <legend>Botones (bootstrap)</legend>
     <button class="btn btn-large btn-primary" type="button">Large button</button>
     <button class="btn btn-default btn-success" type="button">Default medium</button>
