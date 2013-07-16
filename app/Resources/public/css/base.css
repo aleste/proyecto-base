@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600');
 
 *{
-    border-radius: 0 !important;
+    border-radius: 1 !important;
     box-shadow: none !important;
     filter: progid:DXImageTransform.Microsoft.gradient(enabled = false) !important;
     text-shadow: none !important;
@@ -15,6 +15,7 @@
 
 form *{
     font-family: "Open Sans", Arial, Helvetica, sans-serif;
+    margin-bottom: 12px;
 }
 
 input, textarea{
@@ -61,6 +62,7 @@ body .container{
 
 h1,h2,h3,h4,h5,h6{
     padding: 2px 0px;
+    padding-bottom: 20px;
     margin: 2px 0px;
     color: #777;
     font-weight: 400;
@@ -136,6 +138,7 @@ hr{
 
 .btn{
     font-size: 13px !important;
+    margin:2px;
 }
 
 a.btn{
@@ -184,11 +187,11 @@ a.btn{
 }
 
 .btn.btn-success{
-    background: #43c83c !important;
+    background: #36a530 !important;
 }
 
 .btn.btn-success:hover{
-    background: #36a530 !important;
+    background: #088A08 !important;
 }
 
 .btn.btn-warning{
@@ -211,7 +214,7 @@ a.btn{
 
 .label.label-success,
 .badge.badge-success{
-    background: #43c83c !important;
+    background: #36a530 !important;
 }
 
 .label.label-warning,
@@ -332,7 +335,8 @@ a.btn{
 /* Form */
 
 form{
-    margin: 0px;
+    margin-bottom: 10px;
+
 }
 
 form input, form button, form textarea, form select{
@@ -1711,4 +1715,7 @@ border:1px solid #eee;
 
 .form-item-error {
     color: #b94a48;
+}
+legend{
+padding-top: 10px;
 }

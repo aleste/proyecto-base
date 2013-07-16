@@ -14,7 +14,6 @@ Instalar dependencias:
 
     php composer.phar install
 
-
 Configurar permisos:
 
     sudo setfacl -R -m u:www-data:rwX -m u:`whoami`:rwX app/cache app/logs

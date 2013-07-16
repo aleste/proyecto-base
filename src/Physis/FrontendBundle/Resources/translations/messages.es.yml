@@ -22,7 +22,14 @@ base:
         title: Filtros
         submit: Filtrar
         reset: Limpiar
-
-
+    alert:
+        success:
+            title: Operación exitosa
+        error:
+            title: Error 
+        info:
+            title: Información
+        attention:
+            title: Atención
 change_password.flash.success: "La contraseña ha sido cambiada correctamente!"
 

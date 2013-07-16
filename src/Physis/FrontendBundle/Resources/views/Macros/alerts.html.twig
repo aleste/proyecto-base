@@ -1,31 +1,31 @@
-{% macro success(text) %}
-<div class="alert alert-success">
+{% macro success(text, class) %}
+<div class="alert alert-success {{class}}">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <h4 class="alert-heading"><i class="icon-check-sign"></i> Operación exitosa</h4>
+    <h4 class="alert-heading"><i class="icon-check-sign"></i> {{ 'base.alert.success.title'|trans }}</h4>
     {{ text }}
 </div>
 {% endmacro %}
 
-{% macro info(text) %}
-<div class="alert alert-info">
+{% macro info(text, class) %}
+<div class="alert alert-info {{class}}">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <h4 class="alert-heading"><i class="icon-info-sign"></i> Información</h4>
+    <h4 class="alert-heading"><i class="icon-info-sign"></i> {{ 'base.alert.info.title'|trans }}</h4>
     {{ text }}
 </div>
 {% endmacro %}
 
-{% macro error(text) %}
-<div class="alert alert-error">
+{% macro error(text, class) %}
+<div class="alert alert-error {{class}}">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <h4 class="alert-heading"><i class="icon-remove-sign"></i> Error</h4>
+    <h4 class="alert-heading"><i class="icon-remove-sign"></i> {{ 'base.alert.error.title'|trans }}</h4>
     {{ text }}
 </div>
 {% endmacro %}
 
-{% macro warning(text) %}
-<div class="alert alert-warning">
+{% macro warning(text, class) %}
+<div class="alert alert-warning {{class}}">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <h4 class="alert-heading"><i class="icon-warning-sign"></i> Atención</h4>
+    <h4 class="alert-heading"><i class="icon-warning-sign"></i> {{ 'base.alert.attention.title'|trans }}</h4>
     {{ text }}
 </div>
 {% endmacro %}

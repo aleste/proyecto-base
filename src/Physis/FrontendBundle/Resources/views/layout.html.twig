@@ -1,4 +1,5 @@
 {% extends '::base.html.twig' %}
+{% import 'FrontendBundle:Macros:alerts.html.twig' as alerts %}
 
 {% block stylesheets %}
     {% include '::_stylesheets.html.twig' %}
@@ -15,10 +16,12 @@
             {% block flashes %}
                 {% for name, flashes in app.session.flashbag.all if name in ['success', 'error', 'fos_user_success'] %}
                     {% for flash in flashes %}
-                        <div class="alert alert-{{ name == 'fos_user_success' ? 'success' : name }}">
-                            <a class="close" data-dismiss="alert" href="#">×</a>
-                            {{ flash|trans }}
-                        </div>
+                        {% if name in ['fos-user-success', 'success']  %}
+                            {{ alerts.success( flash|trans, 'autohide' ) }}
+                        {% else  %}
+                            {{ alerts.error( flash|trans ) }}
+                        {% endif  %}
+
                     {% endfor %}
                 {% endfor %}
             {% endblock %}

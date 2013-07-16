@@ -4,6 +4,8 @@ $(document).ready(function(){
         language: 'es'
     });
 
+    $('.autohide').delay(2000).fadeOut('slow'); 
+
     // Muestra/oculta filtros
     $(".btn-filters").on('click', function(e){
         $('#filters-container').toggle('100');
