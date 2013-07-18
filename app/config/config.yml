@@ -20,7 +20,8 @@ framework:
         assets_version_format: %%s?v=%%s 
     default_locale:  "%locale%"
     trusted_proxies: ~
-    session:         ~
+    session:
+        name: PROBASESSID
     fragments:       ~
 
 # Twig Configuration
