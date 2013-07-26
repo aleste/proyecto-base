@@ -74,6 +74,7 @@ class DefaultController extends Controller
     {
 
         $contenedor = $this->container;
+
         $pdf = $contenedor->get("white_october.tcpdf")->create('p');
         $pdf->addPage();
 
@@ -81,8 +82,7 @@ class DefaultController extends Controller
 
         $pdf->SetFont('helvetica', '', 8);
 
-        $em = $this->getDoctrine()->getManager();
-        $posts = $this->getDoctrine()->getRepository('AlesteDemoBundle:Post')->findAll();
+        $posts   = $this->getDoctrine()->getRepository('AlesteDemoBundle:Post')->findAll();
         $content = $engine->render('AlesteDemoBundle:Default:exportpdf.html.twig', array('posts' => $posts));
 
 
@@ -98,9 +98,9 @@ class DefaultController extends Controller
 
     public function mostrarVersionesAction(Post $post){
 
-        $em = $this->getDoctrine()->getManager();
-        $repo = $em->getRepository('Gedmo\Loggable\Entity\LogEntry');
-        $versiones = $repo->getLogEntries($post);
+         $em        = $this->getDoctrine()->getManager();
+         $repo      = $em->getRepository('Gedmo\Loggable\Entity\LogEntry');
+         $versiones = $repo->getLogEntries($post);
 
         return $this->render('AlesteDemoBundle:Default:versiones.html.twig',
             array('post' => $post, 'versiones' => $versiones));
@@ -127,7 +127,6 @@ class DefaultController extends Controller
     */
     public function ajaxAction()
     {
-
         return array();
     }
 
