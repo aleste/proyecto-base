@@ -173,6 +173,9 @@ a.btn{
 .btn.btn-primary{
     background: #1171a3 !important;
 }
+.btn.btn-primary > i{
+    margin:3px;
+}
 
 .btn.btn-primary:hover{
     background: #0f608b !important;
