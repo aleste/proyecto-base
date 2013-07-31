@@ -11,24 +11,7 @@ security:
             - ROLE_SONATA_PAGE_ADMIN_PAGE_EDIT  # if you are using acl then this line must be commented
 
     firewalls:
-        # -> custom firewall for the admin area of the URL (SONATA)
-        admin:
-            switch_user:        true
-            context:            user
-            pattern:            /admin(.*)
-            form_login:
-                provider:       fos_userbundle
-                login_path:     /admin/login
-                use_forward:    false
-                check_path:     /admin/login_check
-                failure_path:   null
-                use_referer:    true
-            logout:
-                path:           /admin/logout
-                target:         /
 
-            anonymous:    true
-        # -> end custom configuration
 
         # defaut login area for standard users
         main:
