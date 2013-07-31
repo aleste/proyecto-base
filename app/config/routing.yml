@@ -50,3 +50,5 @@ login_check:
 homepage:
  pattern: /
 
+dashboard:
+    pattern: /admin/dashboard
