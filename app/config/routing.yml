@@ -30,9 +30,13 @@ fos_user_change_password:
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 
+#soanata_user:
+#    resource: '@SonataUserBundle/Resources/config/routing/admin_security.xml'
+#    prefix: /admin
+
 soanata_user:
-    resource: '@SonataUserBundle/Resources/config/routing/admin_security.xml'
-    prefix: /admin
+    resource: 'sonata_admin_security.xml'
+    prefix: /
 
 admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
