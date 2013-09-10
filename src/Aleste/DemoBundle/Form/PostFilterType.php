@@ -5,7 +5,7 @@ namespace Aleste\DemoBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Lexik\Bundle\FormFilterBundle\Filter\ORM\Expr;
+use Lexik\Bundle\FormFilterBundle\Filter\FilterOperands;
 use Doctrine\ORM\QueryBuilder;
 
 
@@ -16,25 +16,9 @@ class PostFilterType extends AbstractType
         
         $builder->add('id', 'filter_number');
 
-        $builder->add('title', 'filter_text', array(
-            'apply_filter' => function (QueryBuilder $filterBuilder, Expr $expr, $field, array $values) {
+        $builder->add('title', 'filter_text', array('condition_pattern' => FilterOperands::OPERAND_SELECTOR) );        
 
-            if ('' !== $values['value'] && null !== $values['value']) {
-                $pattern = empty($values['condition_pattern']) ? FilterOperands::STRING_EQUALS : $values['condition_pattern'];
-                $filterBuilder->andWhere($expr->stringBoth($field, $values['value'], $pattern));
-            }
-
-            }));        
-
-        $builder->add('description', 'filter_text', array(
-            'apply_filter' => function (QueryBuilder $filterBuilder, Expr $expr, $field, array $values) {
-
-            if ('' !== $values['value'] && null !== $values['value']) {
-                $pattern = empty($values['condition_pattern']) ? FilterOperands::STRING_EQUALS : $values['condition_pattern'];
-                $filterBuilder->andWhere($expr->stringBoth($field, $values['value'], $pattern));
-            }
-
-            }));                
+        $builder->add('description', 'filter_text', array('condition_pattern' => FilterOperands::STRING_EQUALS));                
     }
 
     public function getName()

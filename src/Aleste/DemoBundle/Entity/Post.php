@@ -6,6 +6,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Aleste\DemoBundle\Validator\Constraints as AlesteAssert;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Post
@@ -48,6 +49,31 @@ class Post
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Tag", cascade={"persist"})
+     */
+    protected $tags;
+
+    public function __construct()
+    {
+        $this->tags = new ArrayCollection();
+    }
+
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    public function addTag(Tag $tag)
+    {
+        $this->tags->add($tag);
+    }
+
+    public function removeTag(Tag $tag)
+    {
+        $this->tags->removeElement($tag);
+    }
 
 
     /**

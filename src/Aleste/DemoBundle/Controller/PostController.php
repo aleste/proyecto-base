@@ -8,7 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Aleste\DemoBundle\Entity\Post;
+use Aleste\DemoBundle\Entity\Tag;
 use Aleste\DemoBundle\Form\PostType;
+use Aleste\DemoBundle\Form\TagType;
 use Aleste\DemoBundle\Form\PostFilterType;
 use Symfony\Component\Security\Core\SecurityContext;
 use JMS\SecurityExtraBundle\Annotation\Secure;
@@ -21,7 +23,7 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 class PostController extends Controller
 {
 
-    /**
+     /**
      * Lists all Post entities.
      *
      * @Route("/", name="post")
@@ -56,7 +58,7 @@ class PostController extends Controller
             'entities'          => $entities
         );
     }
-    
+
     /**
      * Creates a new Post entity.
      *
@@ -66,15 +68,20 @@ class PostController extends Controller
      */
     public function createAction(Request $request)
     {
-        $entity  = new Post();
-        $form = $this->createForm(new PostType(), $entity);
-        $form->bind($request);
+        $entity = new Post();
+        $form = $this->createCreateForm($entity);
+        $form->handleRequest($request);
 
-        if ($form->isValid()) {
+        $tag = new Tag();
+        $formTag   =  $this->createForm(new TagType(), $tag);
+        $formTag->handleRequest($request);
+
+        if ($form->isValid() && $formTag->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $entity->addTag($tag);
             $em->persist($entity);
+            //$em->persist($tag);
             $em->flush();
-
             $this->get('session')->getFlashBag()->clear();
             $this->get('session')->getFlashBag()->add('success', 'base.create.success');
             return $this->redirect($this->generateUrl('post_show', array('id' => $entity->getId())));
@@ -87,6 +94,25 @@ class PostController extends Controller
     }
 
     /**
+    * Creates a form to create a Post entity.
+    *
+    * @param Post $entity The entity
+    *
+    * @return \Symfony\Component\Form\Form The form
+    */
+    private function createCreateForm(Post $entity)
+    {
+        $form = $this->createForm(new PostType(), $entity, array(
+            'action' => $this->generateUrl('post_create'),
+            'method' => 'POST',
+        ));
+
+        $form->add('submit', 'submit', array('label' => 'Create'));
+
+        return $form;
+    }
+
+    /**
      * Displays a form to create a new Post entity.
      *
      * @Route("/new", name="post_new")
@@ -96,18 +122,20 @@ class PostController extends Controller
     public function newAction()
     {
         $entity = new Post();
-        $form   = $this->createForm(new PostType(), $entity);
-
+        $form   = $this->createCreateForm($entity);
+        $tag = new Tag();
+        $formTag   =  $this->createForm(new TagType(), $tag);
         return array(
             'entity' => $entity,
             'form'   => $form->createView(),
+            'form_tag'   => $formTag->createView(),
         );
     }
 
     /**
      * Finds and displays a Post entity.
      *
-     * @Route("/{id}/mostrar", name="post_show")
+     * @Route("/{id}", name="post_show")
      * @Method("GET")
      * @Template()
      */
@@ -146,7 +174,7 @@ class PostController extends Controller
             throw $this->createNotFoundException('Unable to find Post entity.');
         }
 
-        $editForm = $this->createForm(new PostType(), $entity);
+        $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -156,6 +184,24 @@ class PostController extends Controller
         );
     }
 
+    /**
+    * Creates a form to edit a Post entity.
+    *
+    * @param Post $entity The entity
+    *
+    * @return \Symfony\Component\Form\Form The form
+    */
+    private function createEditForm(Post $entity)
+    {
+        $form = $this->createForm(new PostType(), $entity, array(
+            'action' => $this->generateUrl('post_update', array('id' => $entity->getId())),
+            'method' => 'PUT',
+        ));
+
+        $form->add('submit', 'submit', array('label' => 'Update'));
+
+        return $form;
+    }
     /**
      * Edits an existing Post entity.
      *
@@ -174,14 +220,11 @@ class PostController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new PostType(), $entity);
-        $editForm->bind($request);
+        $editForm = $this->createEditForm($entity);
+        $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-            $em->persist($entity);
             $em->flush();
-
-
             $this->get('session')->getFlashBag()->clear();
             $this->get('session')->getFlashBag()->add('success', 'base.edit.success');
             return $this->redirect($this->generateUrl('post_edit', array('id' => $id)));
@@ -202,7 +245,7 @@ class PostController extends Controller
     public function deleteAction(Request $request, $id)
     {
         $form = $this->createDeleteForm($id);
-        $form->bind($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -230,10 +273,11 @@ class PostController extends Controller
      */
     private function createDeleteForm($id)
     {
-        return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('post_delete', array('id' => $id)))
+            ->setMethod('DELETE')
+            ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
     }
-
 }
