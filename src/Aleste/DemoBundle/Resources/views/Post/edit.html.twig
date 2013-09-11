@@ -8,7 +8,8 @@
 
     {{ form(edit_form) }}
 
-    {{ buttons.back(path('post')) }}
-    {{ form(delete_form) }}
-
+    {{ buttons.back(path('post')) }}        
+    {{ buttons.delete(delete_form) }}    
+    {{ buttons.delete_modal(path('post_delete', { 'id': entity.id }), delete_form) }}
+    
 {% endblock %}

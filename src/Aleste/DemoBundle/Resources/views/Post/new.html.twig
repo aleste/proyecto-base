@@ -6,9 +6,8 @@
 	
     <h1>Nuevo Post</h1>
 
-{{ form_start(form) }}
-    {{ form_row(form.title) }}
-    {# render the task's only field: description #}
+	{{ form_start(form) }}
+    {{ form_row(form.title) }}    
     {{ form_row(form.description) }}
 
     <h3>Tags</h3>
@@ -19,16 +18,14 @@
         {% endfor %}
     </ul>
     {{ form_end(form) }}
-
-        <a class="btn" href="{{ path('post') }}"><i class="icon-caret-left"></i> Listar</a>
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
- <script type="text/javascript">
+    <a class="btn" href="{{ path('post') }}"><i class="icon-caret-left"></i> Listar</a>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+ 	<script type="text/javascript">
 		// Get the ul that holds the collection of tags
 		var collectionHolder = $('ul.tags');
 
 		// setup an "add a tag" link
-		var $addTagLink = $('<a href="#" class="add_tag_link">Add a tag</a>');
+		var $addTagLink = $('<a href="#" class="add_tag_link btn">Agregar Tag</a>');
 		var $newLinkLi = $('<li></li>').append($addTagLink);
 
 		function addTagForm(collectionHolder, $newLinkLi) {
@@ -52,7 +49,7 @@
 		}
 
 		function addTagFormDeleteLink($tagFormLi) {
-		    var $removeFormA = $('<a href="#">delete this tag</a>');
+		    var $removeFormA = $('<a href="#">Quitar Tag</a>');
 		    $tagFormLi.append($removeFormA);
 
 		    $removeFormA.on('click', function(e) {

@@ -19,29 +19,27 @@
     </a>
 {% endmacro %}
 
-{% macro delete_confirm(url, delete_form, text) %}
-    <form action="{{ url }}" method="post" style="display: inline;">
-        <input type="hidden" name="_method" value="DELETE">
-        {{ delete_form is empty ? '' : form_widget(delete_form) }}
+{% macro delete_confirm(url, delete_form, text) %}    
+    {{form_start(delete_form)}}
         <button type="submit" class="btn btn-success" >
             <i class="icon-ok"></i>
             {{ text is empty ? 'base.accept'|trans : text }}
         </button>
-    </form>
+    {{form_end(delete_form)}}
 {% endmacro %}
 
 {% macro delete(delete_form, text) %}
-    <a href="#modal_delete_{{delete_form.vars.value.id}}" role="button" class="btn btn-danger" data-toggle="modal">
+    <a href="#modal_delete_{{delete_form.vars.id}}" role="button" class="btn btn-danger" data-toggle="modal">
         <i class="icon-trash"></i> {{ text is empty ? 'base.delete.delete'|trans : text }}</a>
 {% endmacro %}
 
 {% macro delete_modal(url, delete_form, text, title, question) %}
     {% import _self as buttons %}
     <!-- Modal -->
-    <div id="modal_delete_{{delete_form.vars.value.id}}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal_delete_{{delete_form.vars.value.id}}" aria-hidden="true">
+    <div id="modal_delete_{{delete_form.vars.id}}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal_delete_{{delete_form.vars.id}}" aria-hidden="true">
     <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="modal_delete_{{delete_form.vars.value.id}}">{{ title is empty ? 'base.delete.modal.title'|trans : title }}</h3>
+    <h3 id="modal_delete_{{delete_form.vars.id}}">{{ title is empty ? 'base.delete.modal.title'|trans : title }}</h3>
     </div>
     <div class="modal-body">
     <p>{{ question is empty ? 'base.delete.modal.question'|trans : question }}</p>

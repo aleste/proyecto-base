@@ -21,8 +21,16 @@ framework:
     default_locale:  "%locale%"
     trusted_proxies: ~
     session:
-        name: PROBASESSID
+        name: BASESESSID
+#        handler_id:     session.handler.pdo ##Guarda la info de session en una tabla en la DB.
     fragments:       ~
+
+parameters:
+    pdo.db_options:
+        db_table:    session
+        db_id_col:   session_id
+        db_data_col: session_value
+        db_time_col: session_time    
 
 # Twig Configuration
 twig:
@@ -113,3 +121,19 @@ stof_doctrine_extensions:
         default:
             loggable: true
             sluggable: true
+
+services:
+    pdo:
+        class: PDO
+        arguments:
+            - "mysql:host=%database_host%;port=%database_port%;dbname=%database_name%"
+            - "%database_user%"
+            - "%database_password%" 
+        calls:
+            - [setAttribute, [3, 2]] # \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION
+
+
+
+    session.handler.pdo:
+        class:     Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
+        arguments: ["@pdo", "%pdo.db_options%"]            
