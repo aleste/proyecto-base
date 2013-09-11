@@ -8,9 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Aleste\DemoBundle\Entity\Post;
-use Aleste\DemoBundle\Entity\Tag;
 use Aleste\DemoBundle\Form\PostType;
-use Aleste\DemoBundle\Form\TagType;
 use Aleste\DemoBundle\Form\PostFilterType;
 use Symfony\Component\Security\Core\SecurityContext;
 use JMS\SecurityExtraBundle\Annotation\Secure;
@@ -62,7 +60,7 @@ class PostController extends Controller
     /**
      * Creates a new Post entity.
      *
-     * @Route("/", name="post_create")
+     * @Route("/create", name="post_create")
      * @Method("POST")
      * @Template("AlesteDemoBundle:Post:new.html.twig")
      */
@@ -72,15 +70,9 @@ class PostController extends Controller
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
-        $tag = new Tag();
-        $formTag   =  $this->createForm(new TagType(), $tag);
-        $formTag->handleRequest($request);
-
-        if ($form->isValid() && $formTag->isValid()) {
+        if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity->addTag($tag);
             $em->persist($entity);
-            //$em->persist($tag);
             $em->flush();
             $this->get('session')->getFlashBag()->clear();
             $this->get('session')->getFlashBag()->add('success', 'base.create.success');
@@ -123,12 +115,10 @@ class PostController extends Controller
     {
         $entity = new Post();
         $form   = $this->createCreateForm($entity);
-        $tag = new Tag();
-        $formTag   =  $this->createForm(new TagType(), $tag);
+
         return array(
             'entity' => $entity,
             'form'   => $form->createView(),
-            'form_tag'   => $formTag->createView(),
         );
     }
 
