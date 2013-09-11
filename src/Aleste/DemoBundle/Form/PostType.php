@@ -14,7 +14,7 @@ class PostType extends AbstractType
         $builder
             ->add('title')
             ->add('description')
-            ->add('tags', 'collection', array('type' => new TagType(), 'allow_add' => true, 'by_reference' => false, 'allow_delete' => true))
+            ->add('tags', 'collection', array('type' => new TagType(), 'allow_add' => true, 'by_reference' => false, 'allow_delete' => true, "label" => " "))
             //->add('tags', 'entity', array('class' => 'AlesteDemoBundle:Tag'))
         ;
     }
