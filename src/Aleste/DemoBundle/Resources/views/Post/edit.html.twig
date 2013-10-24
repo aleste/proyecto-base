@@ -9,10 +9,11 @@
     {{ form_start(edit_form) }}
 	{{ form_widget(edit_form) }}
 	{{ buttons.save() }}
-    {{ form_start(edit_form) }}
+    {{ form_end(edit_form) }}
     
     {{ buttons.back(path('post')) }}        
     {{ buttons.delete(delete_form) }}    
     {{ buttons.delete_modal(path('post_delete', { 'id': entity.id }), delete_form) }}
     
 {% endblock %}
+
